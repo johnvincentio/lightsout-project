@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>HTML wireframe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.css"
+    />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  </head>
+  <body>
+    <nav role="navigation">Nav</nav>
+    <main role="main">
+      <header class="header" role="banner">
+        <h1 class="header--title">MyGithub</h1>
+        <h2 class="header--subtitle">Lookup your favorite Github users</h2>
+
+        <section role="search">
+          <form>
+            <input
+              class="header--search input-field"
+              autofocus
+              placeholder="Search Users..."
+              type="text"
+              name="user-name"
+              id="user-name"
+            />
+          </form>
+        </section>
+        <div class="error">Error text</div>
+      </header>
+
+      <section class="user">
+        <div class="user--figure">
+          <figure>
+            <img
+              src="https://avatars1.githubusercontent.com/u/24863376?v=4"
+              alt="name"
+            />
+            <figcaption>
+              <h2 class="user--title">Fred Flintstone</h2>
+              <p class="user--text">San Diego, CA</p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="user--bio">
+          <h2 class="user--bio-text">Username:</h2>
+          <div class="user--bio-text">Company:</div>
+          <div class="user--bio-text">Bio:</div>
+        </div>
+      </section>
+
+      <div class="user--buttons">
+        <button class="user--button github">Github Profile</button>
+        <button class="user--button">Followers: mn</button>
+        <button class="user--button">Following: mn</button>
+        <button class="user--button">Public Repos: mn</button>
+        <button class="user--button">Public Gists: mn</button>
+      </div>
+
+      <section class="followers">
+        <h2 class="followers--header">Followers</h2>
+
+        <div class="followers--list">
+          <figure class="followers--item">
+            <img
+              src="https://avatars1.githubusercontent.com/u/931710?v=4"
+              alt="vpr"
+            />
+            <figcaption>
+              <p>vpr</p>
+            </figcaption>
+          </figure>
+
+          <figure class="followers--item">
+            <img
+              src="https://avatars0.githubusercontent.com/u/2214?v=4"
+              alt="Name"
+            />
+            <figcaption>
+              <p>Name</p>
+            </figcaption>
+          </figure>
+
+          <figure class="followers--item">
+            <img
+              src="https://avatars1.githubusercontent.com/u/2289?v=4"
+              alt="Name"
+            />
+            <figcaption>
+              <p>Name</p>
+            </figcaption>
+          </figure>
+
+          <figure class="followers--item">
+            <img
+              src="https://avatars2.githubusercontent.com/u/14958?v=4"
+              alt="Name"
+            />
+            <figcaption>
+              <p>Name</p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

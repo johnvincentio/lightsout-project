@@ -1,0 +1,232 @@
+
+$font-family: helvetica;
+$font-color: #ecf0f1;
+$bg-color: #3498db;
+
+/*************/
+/* VARIABLES */
+/*************/
+
+// Collection of colors
+
+//  color: #1b98f8;
+// color: rgb(127, 140, 141);
+
+$app-colors: (
+  primary: #1f8dd6,
+  dark-color: #2d3e50,
+  light-color: #ebebeb,
+  item-color: #6fbef3,
+  dark-text-color: #4b7197,
+  white-color: #ffffff,
+  black-color: #000000,
+  facebook: #3b5998,
+  google: #4285f4,
+  text-border: rgb(204, 204, 204),
+  box-shadow: #eaeaea
+);
+@function app-color($key: 'primary') {
+  @return map-get($app-colors, $key);
+}
+
+// Palettes of colors
+
+$palettes: (
+  primary:
+    (
+      base: app-color('primary'),
+      dark-color: app-color('dark-color'),
+      light: lighten(app-color('primary'), 8%),
+      dark: darken(app-color('primary'), 8%),
+      tinted: mix(white, app-color('primary'), 10%),
+      shaded: mix(black, app-color('primary'), 10%)
+    ),
+  header:
+    (
+      base: app-color('dark-color'),
+      text: app-color('white-color'),
+      select: lighten(app-color('item-color'), 15%)
+    ),
+  introduction: (base: app-color('primary'), text: app-color('white-color')),
+  features:
+    (
+      base: app-color('light-color'),
+      text: app-color('primary'),
+      select: lighten(app-color('item-color'), 15%),
+      item-base: app-color('white-color'),
+      p-text: app-color('dark-color')
+    ),
+  login:
+    (
+      base: app-color('white-color'),
+      splash: app-color('primary'),
+      select: darken(app-color('primary'), 15%),
+      dark-color: app-color('dark-color'),
+      input-text: lighten(app-color('dark-color'), 10%),
+      separator: lighten(app-color('dark-color'), 25%),
+      facebook: app-color('facebook'),
+      facebookSelected: darken(app-color('facebook'), 10%),
+      google: app-color('google'),
+      googleSelected: darken(app-color('google'), 10%),
+      text-border: app-color('text-border'),
+      box-shadow: app-color('box-shadow')
+    ),
+  sidebar:
+    (
+      base: app-color('dark-color'),
+      header-text: app-color('dark-text-color'),
+      text: app-color('primary'),
+      button: app-color('item-color'),
+      button-active: app-color('white-color'),
+      search-text: app-color('white-color'),
+      search-icon-color: app-color('white-color'),
+      search-icon-hover-color: app-color('primary'),
+      settings-icon-color: app-color('dark-text-color'),
+      settings-icon-hover-color: app-color('white-color')
+    ),
+  nav-menu: (open: app-color('black-color'), close: app-color('white-color')),
+  settings:
+    (
+      base: app-color('white-color'),
+      text-border: app-color('text-border'),
+      box-shadow: app-color('box-shadow'),
+      dark-color: app-color('dark-color'),
+      subscription-title-color: app-color('dark-color'),
+      subscription-title-text-color: app-color('white-color'),
+      subscription-url: app-color('primary')
+    ),
+  dashboard:
+    (
+      text: app-color('dark-color'),
+      icon-color: app-color('dark-color'),
+      icon-hover-color: app-color('primary'),
+      subscription-title-color: app-color('dark-color'),
+      subscription-title-text-color: app-color('white-color'),
+      article-header-color: app-color('primary'),
+      article-header-hover-color: app-color('dark-color'),
+      footer: app-color('dark-color'),
+      footer-text: app-color('white-color')
+    )
+);
+
+@function palette($palette, $tone: 'base') {
+  // @debug '-------- in palatte; palette `#{$palette}` tone `#{$tone}` palettes `#{$palettes}`';
+  @return map-get(map-get($palettes, $palette), $tone);
+}
+
+// @debug '************** jv *****************';
+
+// @debug ' ***** test1 ******** #{$app-colors.primary} ';
+
+// @debug 'value is `#{$app-colors.primary}`';
+
+// @debug 'palette(dashboard, footer) ';
+
+// color2: palette(introduction, text);
+// color3: palette(header, select);
+// color4: palette(primary, light);
+
+// @debug palette(primary, light);
+
+// $color-blue: #1c94c6;
+// $font-sizes: sm, p, bq, heading, hero;
+// $colors: (
+//   brand-red: #c0392b,
+//   brand-blue: #2980b9,
+//   text-gray: #2c3e50,
+//   text-silver: #bdc3c7
+// );
+
+// .element {
+//   @debug $color-blue; // single value
+//   @debug $font-sizes; // list
+//   @debug $colors; // map
+//   @debug 4em * 3; // math expression
+//   @debug 'My very own string just because.'; // string
+// }
+
+// @each $palette in $palettes {
+//   @debug $palette;
+// }
+
+// @each $palette in $palettes {
+//   // @debug $palette;
+
+//   @each $key, $value in $palette {
+//     @debug '-------- key `#{$key}` value `#{$value}`';
+//     @each $name, $colors in $key {
+//       @debug $name;
+//       @debug $colors;
+//     }
+//   }
+// }
+
+// @debug 'before app-color';
+// @debug app-color('primary');
+// @debug 'after app-color';
+
+// @debug 'before palette';
+// @debug palette(primary, light);
+// @debug 'after palette';
+
+// @debug 'before map-get';
+// @debug map-get($palettes, 'introduction');
+// @debug 'after map-get';
+
+// $var1: map-get($palettes, 'introduction');
+// @debug 'before var1';
+// @debug $var1;
+// @debug 'after var1';
+
+// $out1: 'introduction: {';
+// @each $key, $value in $var1 {
+//   @debug '-------- key `#{$key}` value `#{$value}`';
+//   $out1: $out1 + $key + ': ' + "'" + $value + "', ";
+// }
+// $oute: $out1 + '},';
+
+// @debug 'before oute';
+// @debug $oute;
+// @debug 'after oute';
+
+@function trace($palette) {
+  // @debug '--trace; palette `#{$palette}`';
+  $var1: map-get($palettes, $palette);
+  $out1: $palette + ': {';
+  @each $key, $value in $var1 {
+    // @debug '-------- key `#{$key}` value `#{$value}`';
+    $out1: $out1 + $key + ': ' + "'" + $value + "', ";
+  }
+  $oute: $out1 + '},';
+  @debug $oute;
+  @return $oute;
+}
+
+// $var9: trace('primary');
+
+// $var9: trace('header');
+// $var9: trace('features');
+// $var9: trace('login');
+// $var9: trace('sidebar');
+// $var9: trace('nav-menu');
+// $var9: trace('settings');
+// $var9: trace('dashboard');
+
+// $var9: trace('introduction');
+
+// @debug 'before var9';
+// @debug $var9;
+// @debug 'after var9';
+
+@function traceAll() {
+  @each $palette in $palettes {
+    @debug '--traceAll; palette `#{$palette}`';
+    // @debug trace($palette);
+  }
+  @return 'any';
+}
+
+// @debug 'before varAll';
+// $varAll: traceAll();
+// @debug 'after varAll';
+

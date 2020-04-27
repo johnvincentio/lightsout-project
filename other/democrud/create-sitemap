@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+OUTFILE=static/sitemap.xml
+#
+addFile() {
+    CURFILE=$1;
+    echo "\t<url>" >> $OUTFILE;
+    echo "\t\t<loc>$MYHOST$CURFILE</loc>" >> $OUTFILE;
+    echo "\t\t<lastmod>$DATE</lastmod>" >> $OUTFILE;
+    echo "\t</url>" >> $OUTFILE;
+}
+#
+DATE=`date +%Y-%m-%dT00:00:00+00:00`
+# echo "Date $DATE"
+MYHOST="https://www.taskmuncher.com"
+#echo "MYHOST $MYHOST"
+#
+echo '<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' > $OUTFILE
+echo '\txmlns="http://www.sitemaps.org/schemas/sitemap/0.9" ' >> $OUTFILE
+echo '\txsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 ' >> $OUTFILE
+echo '\thttp://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">' >> $OUTFILE
+#
+addFile '/'
+addFile '/#/join'
+addFile '/#/signin'
+addFile '/#/reset-password'
+addFile '#/terms-of-service'
+addFile '/#/privacy-policy'
+addFile '/#/contact'
+#
+echo '</urlset>' >> $OUTFILE
+

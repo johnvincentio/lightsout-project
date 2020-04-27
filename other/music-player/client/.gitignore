@@ -14,7 +14,7 @@ dist/*
 .sass-cache
 
 # env
-.env
+# .env
 
 # vscode chrome extension
 .vscode/chrome

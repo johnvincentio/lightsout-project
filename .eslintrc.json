@@ -1,0 +1,35 @@
+{
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "env": {
+    "browser": true
+  },
+  "parser": "babel-eslint",
+  "globals": {},
+  "rules": {
+    "no-console": 0,
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "tabWidth": 2,
+        "comments": 120,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignorePattern": "^import\\s.+\\sfrom\\s.+;$"
+      }
+    ],
+    "indent": [2, "tab", { "SwitchCase": 1 }],
+    "no-tabs": 0,
+    "react/jsx-indent": ["off", 2],
+    "react/jsx-indent-props": ["off", 2],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["to"]
+      }
+    ],
+    "react/destructuring-assignment": ["off", "always"]
+  },
+  "plugins": ["react", "jsx-a11y", "import"]
+}

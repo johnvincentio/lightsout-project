@@ -1,0 +1,17 @@
+//
+
+.layout-toolbar {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  background-color: palette(search, tinted);
+  padding-bottom: 20px;
+}
+
+@media screen and (min-width: 580px) {
+  .layout-toolbar {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}

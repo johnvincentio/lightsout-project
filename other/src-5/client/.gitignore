@@ -1,9 +1,5 @@
 .DS_STORE
 
-# vi
-.*.swp
-.*.swo
-
 # node
 node_modules
 

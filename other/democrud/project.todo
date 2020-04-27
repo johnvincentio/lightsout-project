@@ -1,0 +1,72 @@
+
+☐ ListWidget is not implemented
+
+☐ use TaskMuncher icons and manifest
+
+☐ make a sitemap.xml
+
+☐ use website validation blog
+
+☐ lighthouse scores
+
+☐ create SVGs for icons
+
+☐ error on add/update; report the error
+
+☐ remove semantic UI from project; index.hbs
+
+☐ remove bootstrap from project;
+
+✔ textarea does not support pattern, nedd validate @done (5/11/2019, 6:42:12 PM)
+
+pattern="[A-Za-z]{3}" title="Three letter country code"
+
+pattern=".{6,}" title="Six or more characters">
+
+pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+
+name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+
+
+☐ choose fonts
+☐ choose colors
+
+☐ ensure all packages are up-to-date
+
+☐ ensure no vulnerabilities
+
+✔ login/logout @done (5/11/2019, 6:42:23 PM)
+
+☐ jest tests
+
+☐ e2e - what is that
+
+☐ pagination of widgets
+
+✔ search; return subaset of widgets @done (5/11/2019, 6:42:31 PM)
+✔ clear search @done (5/11/2019, 6:42:32 PM)
+
+☐ sort by
+☐ filter by
+
+☐ main.css is loaded twice
+
+✔ use; placeholder={this.props.placeholder} @done (5/11/2019, 6:42:38 PM)
+
+
+https://stevenwestmoreland.com/2018/01/how-to-include-bootstrap-in-your-project-with-webpack.html
+
+ npm install bootstrap jquery popper.js --save
+
+import 'bootstrap';
+
+styles.scss
+@import "~bootstrap/scss/bootstrap";
+
+
+componentWillReceiveProps(nextProps) {
+	if (!isEqual(nextProps.post, this.state.post)) {
+		this.setState({...this.state, post: nextProps.post});
+	}
+}
+

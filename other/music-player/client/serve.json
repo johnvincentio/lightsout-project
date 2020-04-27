@@ -1,0 +1,29 @@
+{
+  "headers": [
+    {
+      "source": "*.json",
+      "headers": [
+        {
+          "Access-Control-Allow-Origin": "*"
+        }
+      ]
+    },
+    {
+      "source": "**/*.@(jpg|jpeg|gif|png)",
+      "headers": [
+        {
+          "Access-Control-Allow-Origin": "*"
+        }
+      ]
+    },
+    {
+      "source": "404.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=300"
+        }
+      ]
+    }
+  ]
+}

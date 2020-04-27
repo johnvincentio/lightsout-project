@@ -1,9 +1,5 @@
 .DS_STORE
 
-# vi
-.*.swp
-.*.swo
-
 # node
 node_modules
 
@@ -14,16 +10,14 @@ dist/*
 .sass-cache
 
 # env
-.env
+# .env
 
 # vscode chrome extension
 .vscode/chrome
 
-# log files
 logfile.txt
 *.log
 
 # webpack bundle analyzer files
 statistics.json
 production-statistics.json
-

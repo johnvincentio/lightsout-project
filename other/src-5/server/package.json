@@ -1,0 +1,31 @@
+{
+	"name": "server",
+	"version": "1.0.0",
+	"description": "change-this",
+	"repository": {
+		"type": "git",
+		"url": "git://git@github.com:johnvincentio/change-repo.git"
+	},
+	"main": "index.js",
+	"scripts": {
+		"nodemon": "nodemon server.js",
+		"start": "node server.js",
+		"eslint_versions": "npm info eslint-config-airbnb@latest peerDependencies"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"acorn": "^6.0.5",
+		"eslint": "^5.12.1",
+		"eslint-config-airbnb": "^17.1.0",
+		"eslint-config-prettier": "^3.6.0",
+		"eslint-loader": "^2.1.1",
+		"eslint-plugin-import": "^2.15.0",
+		"eslint-plugin-jsx-a11y": "^6.1.2",
+		"eslint-plugin-react": "^7.12.4"
+	},
+	"dependencies": {
+		"node-media-server": "^1.4.10"
+	}
+}
