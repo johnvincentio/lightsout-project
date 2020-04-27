@@ -52,7 +52,9 @@ class Board extends React.Component {
 
 		return (
 			<div className="board">
-				<div className="board--header">Lights Out</div>
+				{/* <div className="board--header">Lights Out</div> */}
+				<Grid />
+				{this.renderNewGameButton()}
 			</div>
 		);
 	}
