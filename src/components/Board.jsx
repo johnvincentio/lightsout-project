@@ -9,12 +9,24 @@ class Board extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isReady: false
+			isReady: false,
+			data: this.init()
 		};
 	}
 
-	componentDidMount() {
-		this.handleOnNewgame();
+	// componentDidMount() {
+	// 	this.handleOnNewgame();
+	// }
+
+	init = () => {
+		const arr = new Array(5);
+		for (let i = 0; i < arr.length; i++) {
+			arr[i] = new Array(3);
+			for (let j = 0; j < arr[i].length; j++) {
+				arr[i][j] = true;
+			}
+		}
+		return arr;
 	}
 
 	handleOnNewgame = () => {
@@ -44,7 +56,7 @@ class Board extends React.Component {
 	}
 
 	render() {
-		// console.log('Board::render(); this.state ', this.state, ' this.props ', this.props);
+		console.log('Board::render(); this.state ', this.state, ' this.props ', this.props);
 		// const { currentWord, keyboard, guessesRemaining, isReady, gameWon, gameLost } = this.state;
 		// if (! isReady) {
 		// 	return <div>Loading...</div>;
