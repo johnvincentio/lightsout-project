@@ -29,8 +29,8 @@ class Board extends React.Component {
 		// });
 	}
 
-	handleOnKeyPressed = (letter) => {
-		// console.log('Board::handleOnKeyPressed; letter ', letter);
+	handleOnKeyPressed = (id1, id2) => {
+		console.log('Board::handleOnKeyPressed; id1 ', id1, ' id2 ', id2);
 	}
 
 	renderNewGameButton = () => {
@@ -54,7 +54,7 @@ class Board extends React.Component {
 			<div className="board">
 				<div className="board--header">Lights Out</div>
 				<div className="board--container">
-					<Grid />
+					<Grid onKeyPressed={this.handleOnKeyPressed} />
 					{this.renderNewGameButton()}
 				</div>
 			</div>
@@ -63,11 +63,11 @@ class Board extends React.Component {
 }
 
 Board.propTypes = {
-	maxGuesses: PropTypes.number
+	gridSize: PropTypes.number
 }
 
 Board.defaultProps = {
-	maxGuesses: 6
+	gridSize: 6
 }
 
 export default Board;

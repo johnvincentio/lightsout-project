@@ -3,11 +3,13 @@
 /* eslint-disable react/prefer-stateless-function */
 
 import React from 'react';
+import PropTypes from 'prop-types'
 
 class Grid extends React.Component {
 
 	onHandleClick = (row, col) => {
 		console.log('onHandleClick; row ', row, ' col ', col);
+		this.props.onKeyPressed(row, col);
 	}
 
 	render() {
@@ -29,8 +31,9 @@ class Grid extends React.Component {
 								return (
 									<button 
 										type="button"
+										key={`${id1}-${id2}`}
 										className={`grid--square ${item ? "on" : "off"}`}
-										onClick={() => this.onHandleClick(id1, id2)}
+										onClick={() => this.onHandleClick(id2, id1)}
 									>
 										row={id2}, column={id1}, active={item}
 									</button>
@@ -41,6 +44,10 @@ class Grid extends React.Component {
 			</div>
 		);
 	}
+}
+
+Grid.propTypes = {
+	onKeyPressed: PropTypes.func.isRequired
 }
 
 export default Grid;
