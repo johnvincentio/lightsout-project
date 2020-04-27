@@ -4,17 +4,15 @@
 
 import React from 'react';
 
-import Board from './Board';
-
-class App extends React.Component {
+class Grid extends React.Component {
 
 	render() {
 		return (
 			<div>
-				<Board />
+		GRID	
 			</div>
 		);
 	}
 }
 
-export default App;
+export default Grid;
