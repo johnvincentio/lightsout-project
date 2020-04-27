@@ -10,7 +10,7 @@ class Board extends React.Component {
 		super(props);
 		this.state = {
 			isReady: false,
-			data: this.init()
+			data: this.init(props)
 		};
 	}
 
@@ -18,14 +18,21 @@ class Board extends React.Component {
 	// 	this.handleOnNewgame();
 	// }
 
-	init = () => {
-		const arr = new Array(5);
-		for (let i = 0; i < arr.length; i++) {
-			arr[i] = new Array(3);
-			for (let j = 0; j < arr[i].length; j++) {
-				arr[i][j] = true;
-			}
+	init = (props) => {
+		const arr = [];
+		for (let i = 0; i < props.gridSize ** 2; i++) {
+			const obj = {id: i, active: true, row: 0, col: 0};
+			arr.push(obj);
 		}
+
+
+		// const arr = new Array(5);
+		// for (let i = 0; i < arr.length; i++) {
+		// 	arr[i] = new Array(3);
+		// 	for (let j = 0; j < arr[i].length; j++) {
+		// 		arr[i][j] = true;
+		// 	}
+		// }
 		return arr;
 	}
 
@@ -43,6 +50,10 @@ class Board extends React.Component {
 
 	handleOnKeyPressed = (id1, id2) => {
 		console.log('Board::handleOnKeyPressed; id1 ', id1, ' id2 ', id2);
+		// this.setState(prevState => {
+		// 	let abc = prevState.data;
+
+		// });
 	}
 
 	renderNewGameButton = () => {
@@ -79,7 +90,7 @@ Board.propTypes = {
 }
 
 Board.defaultProps = {
-	gridSize: 6
+	gridSize: 5
 }
 
 export default Board;
