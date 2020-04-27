@@ -1,6 +1,17 @@
 //
 
+
+$primary-color: #428bca;
+$dark-primary-color: #3071a9;
+$darker-primary-color: #093e6c;
+
+$secondary-color: #f0f0f0;
+$dark-secondary-color: #afafaf;
+
+$header-height: 64px;
+
 @import 'setup';
 @import 'mixins';
 
+@import 'board';
 @import 'grid';

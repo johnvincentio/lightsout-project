@@ -14,18 +14,16 @@ class Grid extends React.Component {
 				arr[i][j] = true;
 			}
 		}
-		console.log('arr ', arr);
-
 		return (
 			<div className="grid">
 				{arr.map((row, id1) => {
 					console.log('id1 ', id1);
 					return (
-						<div className="grid--row">row number {id1}
+						<div className="grid--row">
 							{arr[0].map((item, id2) => {
 								console.log('item ', item);
 								return (
-									<div className={`grid--square ${item ? "on" : "off"}`}>row=0, column={id2}, active={item}</div>
+									<div className={`grid--square ${item ? "on" : "off"}`}>row={id2}, column={id1}, active={item}</div>
 								)})}
 						</div>
 					)
