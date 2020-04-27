@@ -17,18 +17,45 @@ class Grid extends React.Component {
 		console.log('arr ', arr);
 
 		return (
-			<div>
-
-				<div className="row">
-					{arr[0].map((item, id) => {
-						console.log('item ', item);
-						return (
-							<div className={`square ${item ? "on" : "off"}`}>row=0, column={id}, active={item}</div>
-						)})}
-				</div>
+			<div >
+				{arr.map((row, id1) => {
+					console.log('id1 ', id1);
+					return (
+						<div className="row">row number {id1}
+							{arr[0].map((item, id2) => {
+								console.log('item ', item);
+								return (
+									<div className={`square ${item ? "on" : "off"}`}>row=0, column={id2}, active={item}</div>
+								)})}
+						</div>
+					)
+				})}
 			</div>
 		);
 	}
 }
 
 export default Grid;
+
+/*
+return (
+			<div>
+
+				<div className="row">
+					{arr.map((row, id1) => {
+						console.log('id1 ', id1);
+						return (
+							<div>row number {id1}</div>
+						)
+					})}
+					{arr[0].map((item, id2) => {
+						console.log('item ', item);
+						return (
+							<div className={`square ${item ? "on" : "off"}`}>row=0, column={id2}, active={item}</div>
+						)})}
+				</div>
+			</div>
+		);
+	}
+}
+*/
