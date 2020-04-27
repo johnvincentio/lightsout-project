@@ -6,6 +6,10 @@ import React from 'react';
 
 class Grid extends React.Component {
 
+	onHandleClick = (row, col) => {
+		console.log('onHandleClick; row ', row, ' col ', col);
+	}
+
 	render() {
 		const arr = new Array(5);
 		for (let i = 0; i < arr.length; i++) {
@@ -23,7 +27,13 @@ class Grid extends React.Component {
 							{arr[0].map((item, id2) => {
 								console.log('item ', item);
 								return (
-									<div className={`grid--square ${item ? "on" : "off"}`}>row={id2}, column={id1}, active={item}</div>
+									<button 
+										type="button"
+										className={`grid--square ${item ? "on" : "off"}`}
+										onClick={() => this.onHandleClick(id1, id2)}
+									>
+										row={id2}, column={id1}, active={item}
+									</button>
 								)})}
 						</div>
 					)
@@ -34,26 +44,3 @@ class Grid extends React.Component {
 }
 
 export default Grid;
-
-/*
-return (
-			<div>
-
-				<div className="row">
-					{arr.map((row, id1) => {
-						console.log('id1 ', id1);
-						return (
-							<div>row number {id1}</div>
-						)
-					})}
-					{arr[0].map((item, id2) => {
-						console.log('item ', item);
-						return (
-							<div className={`square ${item ? "on" : "off"}`}>row=0, column={id2}, active={item}</div>
-						)})}
-				</div>
-			</div>
-		);
-	}
-}
-*/
