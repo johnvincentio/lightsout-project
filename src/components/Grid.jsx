@@ -17,15 +17,15 @@ class Grid extends React.Component {
 		console.log('arr ', arr);
 
 		return (
-			<div >
+			<div className="grid">
 				{arr.map((row, id1) => {
 					console.log('id1 ', id1);
 					return (
-						<div className="row">row number {id1}
+						<div className="grid--row">row number {id1}
 							{arr[0].map((item, id2) => {
 								console.log('item ', item);
 								return (
-									<div className={`square ${item ? "on" : "off"}`}>row=0, column={id2}, active={item}</div>
+									<div className={`grid--square ${item ? "on" : "off"}`}>row=0, column={id2}, active={item}</div>
 								)})}
 						</div>
 					)
