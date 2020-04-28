@@ -10,7 +10,7 @@ class Board extends React.Component {
 		super(props);
 		this.state = {
 			isReady: false,
-			data: this.init(props)
+			grid: this.init(props)
 		};
 	}
 
@@ -18,21 +18,29 @@ class Board extends React.Component {
 	// 	this.handleOnNewgame();
 	// }
 
-	init = (props) => {
-		const arr = [];
-		for (let i = 0; i < props.gridSize ** 2; i++) {
-			const obj = {id: i, active: true, row: 0, col: 0};
-			arr.push(obj);
+	// init = (props) => {
+	// return new Array(props.gridSize).fill(new Array(props.gridSize).fill(true));
+	// }
+
+	init = props => {
+		const arr = new Array(props.gridSize);
+		for (let i = 0; i < arr.length; i++) {
+			arr[i] = new Array(props.gridSize);
+			for (let j = 0; j < arr[i].length; j++) {
+				arr[i][j] = {id: i * arr[i].length + j, on: true };
+			}
 		}
+		return arr;
+	}
 
-
-		// const arr = new Array(5);
-		// for (let i = 0; i < arr.length; i++) {
-		// 	arr[i] = new Array(3);
-		// 	for (let j = 0; j < arr[i].length; j++) {
-		// 		arr[i][j] = true;
-		// 	}
-		// }
+	copyArray = array => {
+		const arr = new Array(this.props.gridSize);
+		for (let i = 0; i < arr.length; i++) {
+			arr[i] = new Array(this.props.gridSize);
+			for (let j = 0; j < arr[i].length; j++) {
+				arr[i][j] = array[i][j];
+			}
+		}
 		return arr;
 	}
 
@@ -50,10 +58,14 @@ class Board extends React.Component {
 
 	handleOnKeyPressed = (id1, id2) => {
 		console.log('Board::handleOnKeyPressed; id1 ', id1, ' id2 ', id2);
-		// this.setState(prevState => {
-		// 	let abc = prevState.data;
-
-		// });
+		this.setState(prevState => {
+			const abc = this.copyArray(prevState.grid);
+			console.log('abc ', abc);
+			abc[id1][id2].on = false;
+			return (
+				{ grid: abc }
+			)
+		});
 	}
 
 	renderNewGameButton = () => {
@@ -77,7 +89,7 @@ class Board extends React.Component {
 			<div className="board">
 				<div className="board--header">Lights Out</div>
 				<div className="board--container">
-					<Grid onKeyPressed={this.handleOnKeyPressed} />
+					<Grid grid={this.state.grid} onKeyPressed={this.handleOnKeyPressed} />
 					{this.renderNewGameButton()}
 				</div>
 			</div>
@@ -94,3 +106,21 @@ Board.defaultProps = {
 }
 
 export default Board;
+
+/*
+		// const arr = [];
+		// for (let i = 0; i < props.gridSize ** 2; i++) {
+		// 	const obj = {id: i, active: true, row: 0, col: 0};
+		// 	arr.push(obj);
+		// }
+
+
+		// const arr = new Array(5);
+		// for (let i = 0; i < arr.length; i++) {
+		// 	arr[i] = new Array(3);
+		// 	for (let j = 0; j < arr[i].length; j++) {
+		// 		arr[i][j] = true;
+		// 	}
+		// }
+		// return arr;
+*/
