@@ -1,5 +1,7 @@
 //
 
+/* eslint-disable no-plusplus */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -9,18 +11,9 @@ class Board extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isReady: false,
 			grid: this.init(props)
 		};
 	}
-
-	// componentDidMount() {
-	// 	this.handleOnNewgame();
-	// }
-
-	// init = (props) => {
-	// return new Array(props.gridSize).fill(new Array(props.gridSize).fill(true));
-	// }
 
 	init = props => {
 		const arr = new Array(props.gridSize);
@@ -43,14 +36,13 @@ class Board extends React.Component {
 	}
 
 	handleOnNewgame = () => {
-
+		this.setState({ grid: this.init(this.props) });
 	}
-
+			
 	handleOnKeyPressed = (id, row, column) => {
-		console.log('Board::handleOnKeyPressed; id ', id, ' row ', row, ' column ', column);
+		// console.log('Board::handleOnKeyPressed; id ', id, ' row ', row, ' column ', column);
 		this.setState(prevState => {
 			const array = this.copyArray(prevState.grid);
-			// console.log('array ', array);
 			array[row].columns[column].on = false;
 			return (
 				{ grid: array }
@@ -69,7 +61,7 @@ class Board extends React.Component {
 	}
 
 	render() {
-		console.log('Board::render(); this.state ', this.state, ' this.props ', this.props);
+		// console.log('Board::render(); this.state ', this.state, ' this.props ', this.props);
 		// const { currentWord, keyboard, guessesRemaining, isReady, gameWon, gameLost } = this.state;
 		// if (! isReady) {
 		// 	return <div>Loading...</div>;
