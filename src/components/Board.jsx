@@ -38,12 +38,35 @@ class Board extends React.Component {
 	handleOnNewgame = () => {
 		this.setState({ grid: this.init(this.props) });
 	}
-			
+	
+	isInbounds = (row, column) => {
+		if (row < 0 || row >= this.props.gridSize) return false;
+		if (column < 0 || column >= this.props.gridSize) return false;
+		return true;
+	}
+
 	handleOnKeyPressed = (id, row, column) => {
-		// console.log('Board::handleOnKeyPressed; id ', id, ' row ', row, ' column ', column);
+		console.log('Board::handleOnKeyPressed; id ', id, ' row ', row, ' column ', column);
 		this.setState(prevState => {
 			const array = this.copyArray(prevState.grid);
-			array[row].columns[column].on = ! prevState.grid[row].columns[column].on;
+			array[row].columns[column].on = ! array[row].columns[column].on;		// toggle the square that was clicked
+
+			if (this.isInbounds(row - 1, column)) {
+				array[row - 1].columns[column].on = ! array[row - 1].columns[column].on;
+			}
+
+			if (this.isInbounds(row, column - 1)) {
+				array[row].columns[column - 1].on = ! array[row].columns[column - 1].on;
+			}
+
+			if (this.isInbounds(row, column + 1)) {
+				array[row].columns[column + 1].on = ! array[row].columns[column + 1].on;
+			}
+
+			if (this.isInbounds(row + 1, column)) {
+				array[row + 1].columns[column].on = ! array[row + 1].columns[column].on;
+			}
+
 			return (
 				{ grid: array }
 			)
