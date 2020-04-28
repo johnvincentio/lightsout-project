@@ -11,6 +11,7 @@ class Board extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			complete: false,
 			grid: this.init(props)
 		};
 	}
@@ -36,7 +37,7 @@ class Board extends React.Component {
 	}
 
 	handleOnNewgame = () => {
-		this.setState({ grid: this.init(this.props) });
+		this.setState({ complete: false, grid: this.init(this.props) });
 	}
 	
 	isInbounds = (row, column) => {
@@ -89,6 +90,11 @@ class Board extends React.Component {
 			<div className="board">
 				<div className="board--header">Lights Out</div>
 				<div className="board--container">
+					{this.state.complete ? (
+						<div>Game is complete</div>
+					) : (
+						<div>Game is not complete</div>
+					)}
 					<Grid grid={this.state.grid} onKeyPressed={this.handleOnKeyPressed} />
 					{this.renderNewGameButton()}
 				</div>
