@@ -46,6 +46,17 @@ class Board extends React.Component {
 		return true;
 	}
 
+	isComplete = grid => {
+		for (let i = 0; i < grid.length; i++) {
+			const row = grid[i];
+			for (let j = 0; j < row.columns.length; j++) {
+				const column = row.columns[j];
+				if (! column.on) return false; ;
+			}
+		}
+		return true;
+	}
+
 	handleOnKeyPressed = (id, row, column) => {
 		console.log('Board::handleOnKeyPressed; id ', id, ' row ', row, ' column ', column);
 		this.setState(prevState => {
@@ -69,7 +80,7 @@ class Board extends React.Component {
 			}
 
 			return (
-				{ grid: array }
+				{ complete: this.isComplete(array) , grid: array }
 			)
 		});
 	}
