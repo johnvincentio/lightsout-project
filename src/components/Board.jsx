@@ -91,7 +91,7 @@ class Board extends React.Component {
 			<div className="board">
 				<div className="board--header">Lights Out</div>
 				<div className="board--container">
-					{! this.state.complete &&
+					{this.state.complete &&
 						<div className="board--status">Congratulations on your Victory!!!</div>
 					}
 					<Grid
