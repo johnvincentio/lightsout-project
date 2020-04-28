@@ -43,7 +43,7 @@ class Board extends React.Component {
 		// console.log('Board::handleOnKeyPressed; id ', id, ' row ', row, ' column ', column);
 		this.setState(prevState => {
 			const array = this.copyArray(prevState.grid);
-			array[row].columns[column].on = false;
+			array[row].columns[column].on = ! prevState.grid[row].columns[column].on;
 			return (
 				{ grid: array }
 			)
