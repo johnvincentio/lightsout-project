@@ -75,4 +75,13 @@
 			}
 		}
 	}
+
+	&--status {
+		@extend %borderRadius;
+		font-size: 1.4em;
+		margin: 30px auto 10px auto;
+		padding: 20px;
+		color: $primary-color;
+		background-color: white;
+	}
 }
