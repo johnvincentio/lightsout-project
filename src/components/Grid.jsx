@@ -17,25 +17,24 @@ class Grid extends React.Component {
 		const { grid } = this.props;
 		return (
 			<div className="grid">
-				<div className="grid--row">
-					{grid.map((row) => {
-						return (
-							<div key={row.row} className="grid--column">
-								{row.columns.map((column) => {
-									return (
-										<button 
-											type="button"
-											key={column.id}
-											className={`grid--square ${column.on ? "on" : "off"}`}
-											onClick={() => this.onHandleClick(column.id, row.row, column.column)}
-										>
+				{grid.map((row) => {
+					return (
+						<div key={row.row} className="grid--row">
+
+							{row.columns.map((column) => {
+								return (
+									<button 
+										type="button"
+										key={column.id}
+										className={`grid--square ${column.on ? "on" : "off"}`}
+										onClick={() => this.onHandleClick(column.id, row.row, column.column)}
+									>
 										row={row.row}, column={column.column}, active={column.on}, id={column.id}
-										</button>
-									)})}
-							</div>
-						)
-					})}
-				</div>
+									</button>
+								)})}
+						</div>
+					)
+				})}
 			</div>
 		);
 	}
