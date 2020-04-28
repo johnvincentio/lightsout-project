@@ -42,7 +42,19 @@ class Grid extends React.Component {
 }
 
 Grid.propTypes = {
-	onKeyPressed: PropTypes.func.isRequired
+	onKeyPressed: PropTypes.func.isRequired,
+	grid: PropTypes.arrayOf(
+		PropTypes.shape({
+			row: PropTypes.number.isRequired,
+			columns: PropTypes.arrayOf(
+				PropTypes.shape({
+					id: PropTypes.number.isRequired,
+					column: PropTypes.number.isRequired,
+					on: PropTypes.bool.isRequired
+				})
+			)
+		})
+	).isRequired
 }
 
 export default Grid;
