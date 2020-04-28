@@ -14,14 +14,23 @@ class Grid extends React.Component {
 
 	render() {
 		console.log('Grid::render(); this.props ', this.props);
-		const { grid } = this.props;
+		const { grid, complete } = this.props;
 		return (
 			<div className="grid">
 				{grid.map((row) => {
 					return (
 						<div key={row.row} className="grid--row">
-
 							{row.columns.map((column) => {
+								if (complete) return (
+									<button 
+										type="button"
+										key={column.id}
+										className={`grid--square ${column.on ? "on" : "off"}`}
+										disabled
+									>
+										row={row.row}, column={column.column}, active={column.on}, id={column.id}
+									</button>
+								);
 								return (
 									<button 
 										type="button"
