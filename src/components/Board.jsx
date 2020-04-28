@@ -51,7 +51,7 @@ class Board extends React.Component {
 			const row = grid[i];
 			for (let j = 0; j < row.columns.length; j++) {
 				const column = row.columns[j];
-				if (! column.on) return false; ;
+				if (column.on) return false; ;
 			}
 		}
 		return true;
@@ -85,18 +85,8 @@ class Board extends React.Component {
 		});
 	}
 
-	renderNewGameButton = () => {
-		return (
-			<div className="board--restart">
-				<button type="button" className="board--restart-button" onClick={() => this.handleOnNewgame()}>
-					Restart
-				</button>
-			</div>
-		)
-	}
-
 	render() {
-		// console.log('Board::render(); this.state ', this.state, ' this.props ', this.props);
+		console.log('Board::render(); this.state ', this.state, ' this.props ', this.props);
 		return (
 			<div className="board">
 				<div className="board--header">Lights Out</div>
@@ -106,8 +96,16 @@ class Board extends React.Component {
 					) : (
 						<div>Game is not complete</div>
 					)}
-					<Grid grid={this.state.grid} onKeyPressed={this.handleOnKeyPressed} />
-					{this.renderNewGameButton()}
+					<Grid
+						grid={this.state.grid}
+						onKeyPressed={this.handleOnKeyPressed}
+						complete={this.state.complete}
+					/>
+					<div className="board--restart">
+						<button type="button" className="board--restart-button" onClick={() => this.handleOnNewgame()}>
+							Restart
+						</button>
+					</div>
 				</div>
 			</div>
 		);
