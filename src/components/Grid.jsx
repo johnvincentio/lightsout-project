@@ -7,9 +7,9 @@ import PropTypes from 'prop-types'
 
 class Grid extends React.Component {
 
-	onHandleClick = (row, col) => {
-		console.log('onHandleClick; row ', row, ' col ', col);
-		this.props.onKeyPressed(row, col);
+	onHandleClick = (id, row, col) => {
+		console.log('onHandleClick; id ', id, ' row ', row, ' col ', col);
+		this.props.onKeyPressed(id, row, col);
 	}
 
 	render() {
@@ -27,7 +27,7 @@ class Grid extends React.Component {
 											type="button"
 											key={column.id}
 											className={`grid--square ${column.on ? "on" : "off"}`}
-											onClick={() => this.onHandleClick(row.row, column.column)}
+											onClick={() => this.onHandleClick(column.id, row.row, column.column)}
 										>
 										row={row.row}, column={column.column}, active={column.on}, id={column.id}
 										</button>
