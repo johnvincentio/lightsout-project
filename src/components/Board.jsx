@@ -25,10 +25,11 @@ class Board extends React.Component {
 	init = props => {
 		const arr = new Array(props.gridSize);
 		for (let i = 0; i < arr.length; i++) {
-			arr[i] = new Array(props.gridSize);
-			for (let j = 0; j < arr[i].length; j++) {
-				arr[i][j] = {id: i * arr[i].length + j, on: true };
+			const columns = new Array(props.gridSize);
+			for (let j = 0; j < columns.length; j++) {
+				columns[j] = {id: i * arr.length + j, column: j, on: true };
 			}
+			arr[i] = { row: i, columns };
 		}
 		return arr;
 	}
@@ -36,34 +37,23 @@ class Board extends React.Component {
 	copyArray = array => {
 		const arr = new Array(this.props.gridSize);
 		for (let i = 0; i < arr.length; i++) {
-			arr[i] = new Array(this.props.gridSize);
-			for (let j = 0; j < arr[i].length; j++) {
-				arr[i][j] = array[i][j];
-			}
+			arr[i] = { row: array[i].row, columns: [ ...array[i].columns]};
 		}
 		return arr;
 	}
 
 	handleOnNewgame = () => {
-		// const word = randomWord().toUpperCase();
-		// this.setState({
-		// 	currentWord: convertStringtoArrayObject(word),
-		// 	keyboard: convertStringtoArrayObject(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`),
-		// 	gameWon: false,
-		// 	gameLost: false,
-		// 	guessesRemaining: this.props.maxGuesses,
-		// 	isReady: true
-		// });
+
 	}
 
-	handleOnKeyPressed = (id1, id2) => {
-		console.log('Board::handleOnKeyPressed; id1 ', id1, ' id2 ', id2);
+	handleOnKeyPressed = (row, column) => {
+		console.log('Board::handleOnKeyPressed; row ', row, ' column ', column);
 		this.setState(prevState => {
-			const abc = this.copyArray(prevState.grid);
-			console.log('abc ', abc);
-			abc[id1][id2].on = false;
+			const array = this.copyArray(prevState.grid);
+			// console.log('array ', array);
+			array[row].columns[column].on = false;
 			return (
-				{ grid: abc }
+				{ grid: array }
 			)
 		});
 	}
@@ -108,6 +98,16 @@ Board.defaultProps = {
 export default Board;
 
 /*
+		// const word = randomWord().toUpperCase();
+		// this.setState({
+		// 	currentWord: convertStringtoArrayObject(word),
+		// 	keyboard: convertStringtoArrayObject(`ABCDEFGHIJKLMNOPQRSTUVWXYZ`),
+		// 	gameWon: false,
+		// 	gameLost: false,
+		// 	guessesRemaining: this.props.maxGuesses,
+		// 	isReady: true
+		// });
+
 		// const arr = [];
 		// for (let i = 0; i < props.gridSize ** 2; i++) {
 		// 	const obj = {id: i, active: true, row: 0, col: 0};
@@ -123,4 +123,26 @@ export default Board;
 		// 	}
 		// }
 		// return arr;
+
+	init = props => {
+		const arr = new Array(props.gridSize);
+		for (let i = 0; i < arr.length; i++) {
+			arr[i] = new Array(props.gridSize);
+			for (let j = 0; j < arr[i].length; j++) {
+				arr[i][j] = {id: i * arr[i].length + j, on: true };
+			}
+		}
+		return arr;
+	}
+		copyArray = array => {
+		const arr = new Array(this.props.gridSize);
+		for (let i = 0; i < arr.length; i++) {
+			arr[i] = new Array(this.props.gridSize);
+			for (let j = 0; j < arr[i].length; j++) {
+				arr[i][j] = array[i][j];
+			}
+		}
+		return arr;
+	}
+
 */

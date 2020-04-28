@@ -13,28 +13,29 @@ class Grid extends React.Component {
 	}
 
 	render() {
+		console.log('Grid::render(); this.props ', this.props);
 		const { grid } = this.props;
 		return (
 			<div className="grid">
-				{grid.map((row, id1) => {
-					console.log('id1 ', id1);
-					return (
-						<div key={id1} className="grid--row">
-							{row.map((item, id2) => {
-								console.log('item ', item);
-								return (
-									<button 
-										type="button"
-										key={item.id}
-										className={`grid--square ${item.on ? "on" : "off"}`}
-										onClick={() => this.onHandleClick(id2, id1)}
-									>
-										row={id2}, column={id1}, active={item.on}
-									</button>
-								)})}
-						</div>
-					)
-				})}
+				<div className="grid--row">
+					{grid.map((row) => {
+						return (
+							<div key={row.row} className="grid--column">
+								{row.columns.map((column) => {
+									return (
+										<button 
+											type="button"
+											key={column.id}
+											className={`grid--square ${column.on ? "on" : "off"}`}
+											onClick={() => this.onHandleClick(row.row, column.column)}
+										>
+										row={row.row}, column={column.column}, active={column.on}, id={column.id}
+										</button>
+									)})}
+							</div>
+						)
+					})}
+				</div>
 			</div>
 		);
 	}

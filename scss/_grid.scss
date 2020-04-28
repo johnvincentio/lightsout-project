@@ -1,17 +1,21 @@
 // 
 
 .grid {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-
 	margin-top: 50px;
 	margin-bottom: 30px;
 
 	border: 1px solid red;
 
 	&--row {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
 
+	&--column {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
 
 	&--square {
