@@ -42,6 +42,7 @@ class Grid extends React.Component {
 
 Grid.propTypes = {
 	onKeyPressed: PropTypes.func.isRequired,
+	complete: PropTypes.bool.isRequired,
 	grid: PropTypes.arrayOf(
 		PropTypes.shape({
 			row: PropTypes.number.isRequired,
