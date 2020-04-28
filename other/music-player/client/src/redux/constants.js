@@ -1,5 +1,0 @@
-//
-
-export const FETCH_MUSIC_DATA = 'FETCH_MUSIC_DATA';
-
-export const FETCH_MUSIC_METADATA = 'FETCH_MUSIC_METADATA';
