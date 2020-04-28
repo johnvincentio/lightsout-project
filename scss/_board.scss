@@ -19,7 +19,7 @@
 .board {
 
 	&--header {
-		// @extend %boxshadow;
+		@extend %boxshadow;
 
 		position: fixed;
 		top: 0;

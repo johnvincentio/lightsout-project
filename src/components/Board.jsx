@@ -92,9 +92,9 @@ class Board extends React.Component {
 				<div className="board--header">Lights Out</div>
 				<div className="board--container">
 					{this.state.complete ? (
-						<div>Game is complete</div>
+						<div className="board-status complete">Game is complete</div>
 					) : (
-						<div>Game is not complete</div>
+						<div className="board-status incomplete">Game is not complete</div>
 					)}
 					<Grid
 						grid={this.state.grid}

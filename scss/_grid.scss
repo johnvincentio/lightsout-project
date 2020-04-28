@@ -1,10 +1,11 @@
 // 
 
 .grid {
+
+	@extend %boxshadow2;
+	
 	margin-top: 50px;
 	margin-bottom: 30px;
-
-	border: 1px solid red;
 
 	&--row {
 		display: flex;
@@ -15,7 +16,7 @@
 	&--square {
 		width: 100px;
 		height: 100px;
-		border: 1px solid black;
+		border: 1px solid $primary-color;
 
 		&.on {
 			background-color: lightgreen;
