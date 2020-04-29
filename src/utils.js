@@ -75,8 +75,8 @@ export function initialize(gridSize) {
 	}
 
 	const moves = [];
-	// const maxMoves = props.gridSize ** 2;
-	const maxMoves = 2;
+	const maxMoves = gridSize ** 2;
+	// const maxMoves = 2;
 	for (let i = 0; i < maxMoves; i++) {
 		const obj = {
 			row: Math.floor(Math.random() * gridSize),
