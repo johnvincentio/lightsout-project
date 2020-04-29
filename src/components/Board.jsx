@@ -10,19 +10,6 @@ import Grid from './Grid';
 
 import { initialize, updateGrid, isComplete } from '../utils';
 
-/*
-TODO;
-// const maxMoves = props.gridSize ** 2;
-uncomment this.
-
-TODO;
-While SolveIt is active,
-1. must disable both buttons while this is in progress
-2. also remove clicked on square.
-3. do not show Victory.
-When SolveIt is over, enable the buttons, respecting this.state.complete.
-*/
-
 class Board extends React.Component {
 	constructor(props) {
 		super(props);
@@ -35,10 +22,10 @@ class Board extends React.Component {
 	
 	handleOnKeyPressed = (row, column) => {
 		if (this.state.clicked.status) return;
-		console.log('Board::handleOnKeyPressed; now ', Date.now(), ' row ', row, ' column ', column);
+		// console.log('Board::handleOnKeyPressed; now ', Date.now(), ' row ', row, ' column ', column);
 		this.setState({ clicked: { status: true, row, column }});
 		setTimeout(() => {
-			console.log('Board::handleOnKeyPressed::setTimeout; now ', Date.now(), 'row ', row, ' column ', column);
+			// console.log('Board::handleOnKeyPressed::setTimeout; now ', Date.now(), 'row ', row, ' column ', column);
 		
 			this.setState(prevState => {
 				const grid = updateGrid(prevState.grid, row, column);
@@ -56,22 +43,22 @@ class Board extends React.Component {
 	}
 
 	handleOnSolveIt = () => {
-		console.log('Board::handleOnSolveIt(); this.state ', this.state, ' this.props ', this.props);
+		// console.log('Board::handleOnSolveIt(); this.state ', this.state, ' this.props ', this.props);
 		if (this.state.clicked.status) return;
 		this.setState({ solveit: true });
 		setTimeout(() => {
-			console.log('Board::handleOnSolveIt::setTimeout; now ', Date.now(), ' this.state.moves ', this.state.moves);
+			// console.log('Board::handleOnSolveIt::setTimeout; now ', Date.now(), ' this.state.moves ', this.state.moves);
 			let ptr = 0;
 			const reverse = [ ...this.state.moves].reverse();
 			this.timer = setInterval(() => {
 				// console.log('in timer; ptr ', ptr);
 				if (ptr < reverse.length) {
-					console.log('in reverse a move; now ', Date.now(), ' ptr ', ptr, ' reverse[ptr] ',reverse[ptr]);
+					// console.log('in reverse a move; now ', Date.now(), ' ptr ', ptr, ' reverse[ptr] ',reverse[ptr]);
 					this.handleOnKeyPressed(reverse[ptr].row, reverse[ptr].column);
 					ptr++;
 				}
 				else {
-					console.log('clearInterval');
+					// console.log('clearInterval');
 					this.setState({ solveit: false });
 					clearInterval(this.timer);
 				}
@@ -80,7 +67,7 @@ class Board extends React.Component {
 	}
 
 	render() {
-		console.log('Board::render(); now ', Date.now(), ' this.state ', this.state, ' this.props ', this.props);
+		// console.log('Board::render(); now ', Date.now(), ' this.state ', this.state, ' this.props ', this.props);
 		const { clicked, complete, solveit } = this.state;
 
 		let disableRestartButton = false;

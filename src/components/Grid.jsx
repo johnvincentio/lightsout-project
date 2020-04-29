@@ -15,7 +15,7 @@ class Grid extends React.Component {
 	}
 
 	render() {
-		console.log('Grid::render(); now ', Date.now(), ' this.props ', this.props);
+		// console.log('Grid::render(); now ', Date.now(), ' this.props ', this.props);
 		const { grid, disableGrid, clicked, solveit } = this.props;
 		return (
 			<div className="grid">
