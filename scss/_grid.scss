@@ -1,48 +1,18 @@
 // 
 
-%one {
-	opacity: 1; background-color: red;
-}
-%two {
-	opacity: 1; background-color: yellow;
-}
-
 @keyframes pulsate  {
-	0% { background-color: red; }
-	100% { background-color: green; }
+	0% {
+		background-color: $pulse-start-color;
+		border: 3px solid $pulse-end-color;
+	}
+	100% {
+		background-color: $pulse-end-color;
+		border: 3px solid $pulse-start-color;
+	}
 }
-
-// @keyframes pulsate  {
-// 	0% { @extend %one; }
-// 	10% { @extend %two; }
-// 	20% { @extend %one; }
-// 	30% {  @extend %two; }
-// 	40% { @extend %one;}
-// 	50% {  @extend %two; }
-// 	60% { @extend %one; }
-// 	70% {  @extend %two; }
-// 	80% { @extend %one;}
-// 	90% {  @extend %two; }
-// 	100% { @extend %one; }
-// }
-
-// @keyframes pulsate  {
-// 	0% { opacity: 0.0; backgrond-color: red; }
-// 	10% { opacity: 1.0; backgrond-color: yellow;}
-// 	20% { opacity: 0.0; }
-// 	30% { opacity: 1.0; }
-// 	40% { opacity: 0.0; }
-// 	50% { opacity: 1.0; }
-// 	60% { opacity: 0.0; }
-// 	70% { opacity: 1.0; }
-// 	80% { opacity: 0.0; }
-// 	90% { opacity: 1.0; }
-// 	100% { opacity: 0.0; }
-// }
 
 .grid {
 
-	// @extend %boxshadow4;
 	box-shadow: 0 0 50px #fff, -10px 0 80px #f0f, 10px 0 80px #0ff;
 
 	margin-top: 70px;
@@ -64,7 +34,6 @@
 			background-color: $lights-on-color;
 
 			&.animate {
-				// border: 3px solid red;
 				animation: pulsate 0.75s ease;
 				animation-iteration-count: infinite; 
 			}
@@ -74,7 +43,6 @@
 			background-color: $lights-off-color;
 
 			&.animate {
-				// border: 3px solid red;
 				animation: pulsate 0.75s ease;
 				animation-iteration-count: infinite; 
 			}
