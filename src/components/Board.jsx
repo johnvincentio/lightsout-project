@@ -24,7 +24,7 @@ class Board extends React.Component {
 		for (let i = 0; i < arr.length; i++) {
 			const columns = new Array(props.gridSize);
 			for (let j = 0; j < columns.length; j++) {
-				columns[j] = {id: i * arr.length + j, column: j, lightson: true };
+				columns[j] = {id: i * arr.length + j, column: j, lightson: false };
 			}
 			arr[i] = { row: i, columns };
 		}
