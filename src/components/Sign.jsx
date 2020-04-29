@@ -3,16 +3,22 @@
 /* eslint-disable react/prefer-stateless-function */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class App extends React.Component {
+class Sign extends React.Component {
 
 	render() {
 		return (
-			<div>
-				Sign
+			<div className="sign">
+				<span className="sign--lights">Lights</span>
+				<span className="sign--out">Out</span>
 			</div>
 		);
 	}
 }
 
-export default App;
+Sign.propTypes = {
+	complete: PropTypes.bool.isRequired
+}
+
+export default Sign;

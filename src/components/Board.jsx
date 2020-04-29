@@ -94,33 +94,31 @@ class Board extends React.Component {
 
 		return (
 			<div className="board">
-				<div className="board--container">
-					<Sign complete={complete}/>
-					<Grid
-						grid={this.state.grid}
-						onKeyPressed={this.handleOnKeyPressed}
-						disableGrid={disableGrid}
-						clicked={clicked}
-						solveit={solveit}
-					/>
-					<div className="board--buttons">
-						<button
-							type="button"
-							className={`board--restart-button ${disableRestartButton ? "disableButton" : "enabledButton"}`}
-							onClick={() => this.handleOnRestart()}
-							disabled={disableRestartButton}
-						>
+				<Sign complete={complete}/>
+				<Grid
+					grid={this.state.grid}
+					onKeyPressed={this.handleOnKeyPressed}
+					disableGrid={disableGrid}
+					clicked={clicked}
+					solveit={solveit}
+				/>
+				<div className="board--buttons">
+					<button
+						type="button"
+						className={`board--buttons-restart ${disableRestartButton ? "disableButton" : "enabledButton"}`}
+						onClick={() => this.handleOnRestart()}
+						disabled={disableRestartButton}
+					>
 							Restart
-						</button>
-						<button
-							type="button"
-							className={`board--solveit-button ${disableSolveitButton ? "disableButton" : "enabledButton"}`}
-							onClick={() => this.handleOnSolveIt()}
-							disabled={disableSolveitButton}
-						>
+					</button>
+					<button
+						type="button"
+						className={`board--buttons-solveit ${disableSolveitButton ? "disableButton" : "enabledButton"}`}
+						onClick={() => this.handleOnSolveIt()}
+						disabled={disableSolveitButton}
+					>
 							Solve it!
-						</button>
-					</div>
+					</button>
 				</div>
 			</div>
 		);
