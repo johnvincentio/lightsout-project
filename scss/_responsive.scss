@@ -4,22 +4,17 @@ $breakpoint-1: 361px;
 $breakpoint-2: 500px;
 $breakpoint-3: 600px;
 $breakpoint-4: 700px;
-$breakpoint-5: 900px;
+$breakpoint-4a: 767px;
+$breakpoint-5: 800px;
+$breakpoint-6: 900px;
+$breakpoint-7: 1000px;
+$breakpoint-8: 1100px;
 
 @media only screen and (max-width: $breakpoint-1) {
 	.grid {
 		&--square {
 			width: 50px;
 			height: 50px;
-		}
-	}
-	.board {
-		&--buttons {
-			&-restart, &-solveit {
-				font-size: 1em;
-				padding: 10px;
-				margin: 6px 20px 20px 20px;
-			}
 		}
 	}
 }
@@ -42,8 +37,43 @@ $breakpoint-5: 900px;
 	}
 }
 
-@media only screen and (min-width: $breakpoint-4) and (max-width: $breakpoint-5) {
+@media only screen and (min-width: $breakpoint-4) and (max-width: $breakpoint-4a) {
 	.grid {
 		&--square { width: 110px; height: 110px; }
+	}
+}
+
+@media only screen and (min-width: $breakpoint-4a) and (max-width: $breakpoint-5) {
+	.grid {
+		&--square { width: 125px; height: 125px; }
+	}
+}
+
+@media only screen and (min-width: $breakpoint-5) and (max-width: $breakpoint-6) {
+	.grid {
+		&--square { width: 140px; height: 140px; }
+	}
+}
+
+@media only screen and (min-width: $breakpoint-6) and (max-width: $breakpoint-7) {
+	.grid {
+		&--square { width: 160px; height: 160px; }
+	}
+}
+
+@media only screen and (min-width: $breakpoint-7) and (max-width: $breakpoint-8) {
+	.grid {
+		&--square { width: 175px; height: 175px; }
+	}
+}
+
+@media only screen and (max-width: $breakpoint-3) {
+	.board {
+		&--buttons {
+			&-restart, &-solveit {
+				font-size: 1em;
+				padding: 10px;
+			}
+		}
 	}
 }
