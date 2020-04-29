@@ -83,14 +83,16 @@ class Board extends React.Component {
 
 	render() {
 		console.log('Board::render(); now ', Date.now(), ' this.state ', this.state, ' this.props ', this.props);
+		const { clicked, complete, solveit } = this.state;
+
 		let disableRestartButton = false;
-		if (this.state.solveit) disableRestartButton = true;
+		if (clicked.status || solveit) disableRestartButton = true;
 
 		let disableSolveitButton = false;
-		if (this.state.solveit || this.state.complete) disableSolveitButton = true;
+		if (clicked.status || solveit || complete) disableSolveitButton = true;
 
 		let disableGrid = false;
-		if (this.state.solveit || this.state.complete) disableGrid = true;
+		if (solveit || complete) disableGrid = true;
 
 		return (
 			<div className="board">
@@ -103,8 +105,8 @@ class Board extends React.Component {
 						grid={this.state.grid}
 						onKeyPressed={this.handleOnKeyPressed}
 						disableGrid={disableGrid}
-						clicked={this.state.clicked}
-						solveit={this.state.solveit}
+						clicked={clicked}
+						solveit={solveit}
 					/>
 					<div className="board--buttons">
 						<button
