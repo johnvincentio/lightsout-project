@@ -75,8 +75,4 @@ Grid.propTypes = {
 	}).isRequired
 }
 
-Grid.defaultProps = {
-
-}
-
 export default Grid;

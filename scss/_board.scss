@@ -25,27 +25,30 @@
 		align-items: center;
 	}
 
-	&--restart {
+	&--buttons {
+		display: flex;
+		justify-content: center;
+	}
 
-		&-button {
-			@extend %boxshadow3;
-			@extend %borderRadius;
-			border: none transparent;
+	&--restart-button,
+	&--showme-button {
+		@extend %boxshadow3;
+		@extend %borderRadius;
+		border: none transparent;
 
-			font-size: 18px;
-			padding: 16px;
-			margin: 6px auto 20px auto;
+		font-size: 18px;
+		padding: 16px;
+		margin: 6px 20px 20px 20px;
 
-			background-color: $button-background-color;
-			color: $button-color;
-			text-decoration: none;
-			outline: none;
-			&:hover {
-				background-color: $darker-button-background-color;
-				@include transition(all 0.3s);
-				cursor: pointer;
-				@include opacity(1);
-			}
+		background-color: $button-background-color;
+		color: $button-color;
+		text-decoration: none;
+		outline: none;
+		&:hover {
+			background-color: $darker-button-background-color;
+			@include transition(all 0.3s);
+			cursor: pointer;
+			@include opacity(1);
 		}
 	}
 

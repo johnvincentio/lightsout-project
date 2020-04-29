@@ -79,7 +79,7 @@ TODO; must disable both buttons while this is in progress, also remove clicked.
 						complete={this.state.complete}
 						clicked={this.state.clicked}
 					/>
-					<div className="board--restart">
+					<div className="board--buttons">
 						<button type="button" className="board--restart-button" onClick={() => this.handleOnNewgame()}>
 							Restart
 						</button>
