@@ -44,20 +44,21 @@ class Board extends React.Component {
 TODO; must disable both buttons while this is in progress, also remove clicked.
 */
 	handleOnShowme = () => {
+		console.log('Board::handleOnShowme(); this.state ', this.state, ' this.props ', this.props);
 		if (this.state.clicked.status) return;
 
 		const reverse = [ ...this.state.moves].reverse();
 
 		let ptr = 0;
 		this.timer = setInterval(() => {
-			console.log('in timer; ptr ', ptr);
+			// console.log('in timer; ptr ', ptr);
 			if (ptr < reverse.length) {
-				console.log('in reverse a move');
-				this.handleOnKeyPressed(0, reverse[ptr].row, reverse[ptr].column);
+				console.log('in reverse a move; ptr ', ptr, ' reverse[ptr] ',reverse[ptr]);
+				this.handleOnKeyPressed(reverse[ptr].row, reverse[ptr].column);
 				ptr++;
 			}
 			else {
-				console.log('clear interval');
+				console.log('clearInterval');
 				clearInterval(this.timer);
 			}
 		}, 2000);
@@ -101,26 +102,3 @@ Board.defaultProps = {
 }
 
 export default Board;
-
-/*
-
-			// const array = this.copyGrid(prevState.grid);
-			// array[row].columns[column].on = ! array[row].columns[column].on;		// toggle the square that was clicked
-
-			// if (this.isInbounds(row - 1, column)) {
-			// 	array[row - 1].columns[column].on = ! array[row - 1].columns[column].on;
-			// }
-
-			// if (this.isInbounds(row, column - 1)) {
-			// 	array[row].columns[column - 1].on = ! array[row].columns[column - 1].on;
-			// }
-
-			// if (this.isInbounds(row, column + 1)) {
-			// 	array[row].columns[column + 1].on = ! array[row].columns[column + 1].on;
-			// }
-
-			// if (this.isInbounds(row + 1, column)) {
-			// 	array[row + 1].columns[column].on = ! array[row + 1].columns[column].on;
-			// }
-*/
-
