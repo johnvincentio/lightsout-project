@@ -11,18 +11,18 @@ export function copyGrid(grid) {
 }
 
 export function	isComplete(grid) {
-	console.log('>>> isComplete; grid ', grid);
+	// console.log('>>> isComplete; grid ', grid);
 	for (let i = 0; i < grid.length; i++) {
 		const row = grid[i];
 		for (let j = 0; j < row.columns.length; j++) {
 			const column = row.columns[j];
 			if (column.lightson) {
-				console.log('<<< isComplete; false');
+				// console.log('<<< isComplete; false');
 				return false;
 			}
 		}
 	}
-	console.log('<<< isComplete; TRUE');
+	// console.log('<<< isComplete; TRUE');
 	return true;
 }
 
@@ -63,6 +63,7 @@ export function initialize(gridSize) {
 		}
 		arr[i] = { row: i, columns };
 	}
+
 	const moves = [];
 	// const maxMoves = props.gridSize ** 2;
 	const maxMoves = 2;
