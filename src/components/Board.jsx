@@ -42,10 +42,10 @@ class Board extends React.Component {
 		return { grid: arr, moves };
 	}
 
-	copyArray = array => {
-		const arr = new Array(this.props.gridSize);
+	copyGrid = grid => {
+		const arr = new Array(grid.length);
 		for (let i = 0; i < arr.length; i++) {
-			arr[i] = { row: array[i].row, columns: [ ...array[i].columns]};
+			arr[i] = { row: grid[i].row, columns: [ ...grid[i].columns]};
 		}
 		return arr;
 	}
@@ -62,7 +62,7 @@ class Board extends React.Component {
 	}
 
 	updateGrid = (grid, row, column) => {
-		const array = this.copyArray(grid);
+		const array = this.copyGrid(grid);
 		array[row].columns[column].lightson = ! array[row].columns[column].lightson;		// toggle the square that was clicked
 
 		if (this.isInbounds(row - 1, column)) {
@@ -182,7 +182,7 @@ export default Board;
 
 /*
 
-			// const array = this.copyArray(prevState.grid);
+			// const array = this.copyGrid(prevState.grid);
 			// array[row].columns[column].on = ! array[row].columns[column].on;		// toggle the square that was clicked
 
 			// if (this.isInbounds(row - 1, column)) {
