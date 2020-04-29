@@ -15,7 +15,7 @@ class Grid extends React.Component {
 	render() {
 		console.log('Grid::render(); this.props ', this.props);
 		const { grid, complete, clicked } = this.props;
-		console.log('clicked ', clicked);
+		// console.log('clicked ', clicked);
 		return (
 			<div className="grid">
 				{grid.map((row) => {
@@ -24,7 +24,7 @@ class Grid extends React.Component {
 							{row.columns.map((column) => {
 
 								const abc = clicked.status && clicked.row === row.row && clicked.column === column.column;
-								console.log('abc ', abc);
+								// console.log('abc ', abc);
 								if (complete) return (
 									<button 
 										type="button"
