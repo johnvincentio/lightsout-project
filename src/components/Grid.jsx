@@ -40,7 +40,7 @@ class Grid extends React.Component {
 										key={column.id}
 										className={clz}
 										onClick={() => this.onHandleClick(column.id, row.row, column.column)}
-										disabled={disableGrid}
+										disabled={disableGrid || clicked.status}
 									>
 										{column.id}, {row.row}, {column.column}, {column.lightson ? "on" : "off"}
 									</button>

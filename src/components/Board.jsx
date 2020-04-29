@@ -74,6 +74,7 @@ class Board extends React.Component {
 				}
 				else {
 					console.log('clearInterval');
+					this.setState({ solveit: false });
 					clearInterval(this.timer);
 				}
 			}, 2000);
@@ -87,9 +88,6 @@ class Board extends React.Component {
 
 		let disableSolveitButton = false;
 		if (this.state.solveit || this.state.complete) disableSolveitButton = true;
-
-		// solveit
-		// key pressed
 
 		let disableGrid = false;
 		if (this.state.solveit || this.state.complete) disableGrid = true;
