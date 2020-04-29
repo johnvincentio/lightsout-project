@@ -14,13 +14,17 @@ class Grid extends React.Component {
 
 	render() {
 		console.log('Grid::render(); this.props ', this.props);
-		const { grid, complete } = this.props;
+		const { grid, complete, animate } = this.props;
+		console.log('animate ', animate);
 		return (
 			<div className="grid">
 				{grid.map((row) => {
 					return (
 						<div key={row.row} className="grid--row">
 							{row.columns.map((column) => {
+
+								const abc = animate.status && animate.row === row.row && animate.column === column.column;
+								console.log('abc ', abc);
 								if (complete) return (
 									<button 
 										type="button"
@@ -35,7 +39,7 @@ class Grid extends React.Component {
 									<button 
 										type="button"
 										key={column.id}
-										className={`grid--square ${column.on ? "on" : "off"}`}
+										className={`grid--square ${column.on ? "on" : "off"} ${abc ? "animate" : ""} `}
 										onClick={() => this.onHandleClick(column.id, row.row, column.column)}
 									>
 										row={row.row}, column={column.column}, active={column.on}, id={column.id}
