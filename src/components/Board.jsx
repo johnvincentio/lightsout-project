@@ -54,7 +54,7 @@ class Board extends React.Component {
 					}
 				)
 			});
-		}, 500);
+		}, 1000);
 	}
 
 	handleOnSolveIt = () => {
