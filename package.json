@@ -27,7 +27,7 @@
     "dev": "webpack --mode development --progress",
     "start": "webpack-dev-server --hot --inline --mode development",
     "serve-help": "serve --help",
-    "serve": "serve -l 9435 dist",
+    "serve": "serve -l 9432 dist",
     "production-statistics": "rm -rf dist && NODE_ENV=production webpack --mode production --profile --json > production-statistics.json && webpack-bundle-analyzer production-statistics.json dist",
     "statistics": "webpack --mode development --profile --json > statistics.json && webpack-bundle-analyzer statistics.json dist",
     "production": "rm -rf dist && NODE_ENV=production npm run build",
