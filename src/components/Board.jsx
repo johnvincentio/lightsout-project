@@ -104,12 +104,26 @@ class Board extends React.Component {
 		});
 	}
 
+	/*
+TODO; must disable both buttons while this is in progresss
+*/
 	handleOnShowme = () => {
 		const reverse = [ ...this.state.moves].reverse();
 
-		reverse.forEach(item => {
-			console.log('moves; item ', item);
-		})
+		let ptr = 0;
+
+		this.timer = setInterval(() => {
+			console.log('in timer; ptr ', ptr);
+			if (ptr < reverse.length) {
+				console.log('in reverse a move');
+				this.handleOnKeyPressed(0, reverse[ptr].row, reverse[ptr].column);
+				ptr++;
+			}
+			else {
+				console.log('clear interval');
+				clearInterval(this.timer);
+			}
+		}, 1000);
 	}
 
 	render() {
