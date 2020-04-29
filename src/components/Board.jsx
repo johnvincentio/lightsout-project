@@ -11,6 +11,10 @@ import { initialize, updateGrid, isComplete } from '../utils';
 
 /*
 TODO;
+// const maxMoves = props.gridSize ** 2;
+uncomment this.
+
+TODO;
 While SolveIt is active,
 1. must disable both buttons while this is in progress
 2. also remove clicked on square.
@@ -71,6 +75,7 @@ class Board extends React.Component {
 
 	render() {
 		console.log('Board::render(); now ', Date.now(), ' this.state ', this.state, ' this.props ', this.props);
+		const disableButtons = true;
 		return (
 			<div className="board">
 				{/* <div className="board--header">Lights Out</div> */}
@@ -85,10 +90,20 @@ class Board extends React.Component {
 						clicked={this.state.clicked}
 					/>
 					<div className="board--buttons">
-						<button type="button" className="board--restart-button" onClick={() => this.handleOnNewgame()}>
+						<button
+							type="button"
+							className={`board--restart-button ${disableButtons ? "disableButtons" : "enabledButtons"}`}
+							onClick={() => this.handleOnNewgame()}
+							disabled={disableButtons}
+						>
 							Restart
 						</button>
-						<button type="button" className="board--solveit-button" onClick={() => this.handleOnSolveIt()}>
+						<button
+							type="button"
+							className={`board--solveit-button ${disableButtons ? "disableButtons" : "enabledButtons"}`}
+							onClick={() => this.handleOnSolveIt()}
+							disabled={disableButtons}
+						>
 							Solve it!
 						</button>
 					</div>
