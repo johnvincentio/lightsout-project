@@ -9,7 +9,7 @@ class Grid extends React.Component {
 
 	onHandleClick = (id, row, col) => {
 		// console.log('onHandleClick; id ', id, ' row ', row, ' col ', col);
-		this.props.onKeyPressed(id, row, col);
+		this.props.onKeyPressed(row, col);
 	}
 
 	render() {

@@ -19,8 +19,8 @@ class Board extends React.Component {
 		this.setState(initialize(this.props.gridSize));
 	}
 	
-	handleOnKeyPressed = (id, row, column) => {
-		console.log('Board::handleOnKeyPressed; id ', id, ' row ', row, ' column ', column);
+	handleOnKeyPressed = (row, column) => {
+		console.log('Board::handleOnKeyPressed; row ', row, ' column ', column);
 		this.setState({ clicked: { status: true, row, column }});
 		setTimeout(() => {
 			this.executeMove(row,column);
