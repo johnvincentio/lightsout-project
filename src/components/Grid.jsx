@@ -13,7 +13,7 @@ class Grid extends React.Component {
 	}
 
 	render() {
-		console.log('Grid::render(); this.props ', this.props);
+		console.log('Grid::render(); now ', Date.now(), ' this.props ', this.props);
 		const { grid, complete, clicked } = this.props;
 		// console.log('clicked ', clicked);
 		return (

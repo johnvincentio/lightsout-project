@@ -16,6 +16,9 @@ While SolveIt is active,
 1. must disable both buttons while this is in progress
 2. also remove clicked on square.
 When SolveIt is over, enable the buttons, respecting this.state.complete.
+
+On Click Square:
+De-activate all squares and buttons until the square has been updated.
 */
 
 class Board extends React.Component {
@@ -30,7 +33,7 @@ class Board extends React.Component {
 	
 	handleOnKeyPressed = (row, column) => {
 		if (this.state.clicked.status) return;
-		console.log('Board::handleOnKeyPressed; row ', row, ' column ', column);
+		console.log('Board::handleOnKeyPressed; now ', Date.now(), ' row ', row, ' column ', column);
 		this.setState({ clicked: { status: true, row, column }});
 		setTimeout(() => {
 			this.executeMove(row,column);
@@ -38,7 +41,7 @@ class Board extends React.Component {
 	}
 
 	executeMove = (row, column) => {
-		console.log('Board::executeMove; row ', row, ' column ', column);
+		console.log('Board::executeMove; now ', Date.now(), 'row ', row, ' column ', column);
 		
 		this.setState(prevState => {
 			const grid = updateGrid(prevState.grid, row, column);
@@ -59,7 +62,7 @@ class Board extends React.Component {
 		this.timer = setInterval(() => {
 			// console.log('in timer; ptr ', ptr);
 			if (ptr < reverse.length) {
-				console.log('in reverse a move; ptr ', ptr, ' reverse[ptr] ',reverse[ptr]);
+				console.log('in reverse a move; now ', Date.now(), ' ptr ', ptr, ' reverse[ptr] ',reverse[ptr]);
 				this.handleOnKeyPressed(reverse[ptr].row, reverse[ptr].column);
 				ptr++;
 			}
@@ -71,7 +74,7 @@ class Board extends React.Component {
 	}
 
 	render() {
-		console.log('Board::render(); this.state ', this.state, ' this.props ', this.props);
+		console.log('Board::render(); now ', Date.now(), ' this.state ', this.state, ' this.props ', this.props);
 		return (
 			<div className="board">
 				{/* <div className="board--header">Lights Out</div> */}
