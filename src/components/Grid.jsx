@@ -32,7 +32,7 @@ class Grid extends React.Component {
 										className={`grid--square ${column.lightson ? "on" : "off"}`}
 										disabled
 									>
-										row={row.row}, column={column.column}, active={column.lightson}, id={column.id}
+										{column.id}, {row.row}, {column.column}, ${column.lightson ? "on" : "off"}
 									</button>
 								);
 								return (
@@ -42,7 +42,7 @@ class Grid extends React.Component {
 										className={`grid--square ${column.lightson ? "on" : "off"} ${animation ? "animate" : ""} `}
 										onClick={() => this.onHandleClick(column.id, row.row, column.column)}
 									>
-										row={row.row}, column={column.column}, active={column.lightson}, id={column.id}
+										{column.id}, {row.row}, {column.column}, {column.lightson ? "on" : "off"}
 									</button>
 								)})}
 						</div>
