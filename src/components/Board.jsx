@@ -104,6 +104,7 @@ class Board extends React.Component {
 						onKeyPressed={this.handleOnKeyPressed}
 						disableGrid={disableGrid}
 						clicked={this.state.clicked}
+						solveit={this.state.solveit}
 					/>
 					<div className="board--buttons">
 						<button

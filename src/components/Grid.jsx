@@ -16,15 +16,15 @@ class Grid extends React.Component {
 
 	render() {
 		console.log('Grid::render(); now ', Date.now(), ' this.props ', this.props);
-		const { grid, disableGrid, clicked } = this.props;
+		const { grid, disableGrid, clicked, solveit } = this.props;
 		return (
 			<div className="grid">
 				{grid.map((row) => {
 					return (
 						<div key={row.row} className="grid--row">
 							{row.columns.map((column) => {
-								const animation = !disableGrid
-											&& clicked.status
+								const animation = 
+											(solveit || (! disableGrid && clicked.status))
 											&& clicked.row === row.row 
 											&& clicked.column === column.column;
 								// console.log('animation ', animation);
@@ -54,8 +54,6 @@ class Grid extends React.Component {
 }
 
 Grid.propTypes = {
-	onKeyPressed: PropTypes.func.isRequired,
-	disableGrid: PropTypes.bool.isRequired,
 	grid: PropTypes.arrayOf(
 		PropTypes.shape({
 			row: PropTypes.number.isRequired,
@@ -68,11 +66,14 @@ Grid.propTypes = {
 			)
 		})
 	).isRequired,
+	onKeyPressed: PropTypes.func.isRequired,
+	disableGrid: PropTypes.bool.isRequired,
 	clicked: PropTypes.shape({
 		status: PropTypes.bool.isRequired,
 		row: PropTypes.number,
 		column: PropTypes.number
-	}).isRequired
+	}).isRequired,
+	solveit: PropTypes.bool.isRequired
 }
 
 export default Grid;
