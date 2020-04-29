@@ -94,12 +94,8 @@ class Board extends React.Component {
 
 		return (
 			<div className="board">
-				{/* <div className="board--header">Lights Out</div> */}
 				<div className="board--container">
-					<Sign />
-					{/* {complete &&
-						<div className="board--status">Congratulations on your Victory!!!</div>
-					} */}
+					<Sign complete={complete}/>
 					<Grid
 						grid={this.state.grid}
 						onKeyPressed={this.handleOnKeyPressed}
