@@ -5,6 +5,8 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
+import classnames from 'classnames';
+
 class Grid extends React.Component {
 
 	onHandleClick = (id, row, col) => {
@@ -14,33 +16,31 @@ class Grid extends React.Component {
 
 	render() {
 		console.log('Grid::render(); now ', Date.now(), ' this.props ', this.props);
-		const { grid, complete, clicked } = this.props;
-		// console.log('clicked ', clicked);
+		const { grid, disableGrid, clicked } = this.props;
 		return (
 			<div className="grid">
 				{grid.map((row) => {
 					return (
 						<div key={row.row} className="grid--row">
 							{row.columns.map((column) => {
-
-								const animation = clicked.status && clicked.row === row.row && clicked.column === column.column;
-								// console.log('animation ', animation);
-								if (complete) return (
-									<button 
-										type="button"
-										key={column.id}
-										className={`grid--square ${column.lightson ? "on" : "off"}`}
-										disabled
-									>
-										{column.id}, {row.row}, {column.column}, ${column.lightson ? "on" : "off"}
-									</button>
-								);
+								const animation = !disableGrid
+											&& clicked.status
+											&& clicked.row === row.row 
+											&& clicked.column === column.column;
+								console.log('animation ', animation);
+								const clz = classnames(
+									`grid--square`, 
+									column.lightson ? `on` : `off`,
+									animation ? `animate` : ``,
+									disableGrid ? `disableButtons` : `enableButtons`);
+								console.log('clz ', clz);
 								return (
 									<button 
 										type="button"
 										key={column.id}
-										className={`grid--square ${column.lightson ? "on" : "off"} ${animation ? "animate" : ""} `}
+										className={clz}
 										onClick={() => this.onHandleClick(column.id, row.row, column.column)}
+										disabled={disableGrid}
 									>
 										{column.id}, {row.row}, {column.column}, {column.lightson ? "on" : "off"}
 									</button>
@@ -55,7 +55,7 @@ class Grid extends React.Component {
 
 Grid.propTypes = {
 	onKeyPressed: PropTypes.func.isRequired,
-	complete: PropTypes.bool.isRequired,
+	disableGrid: PropTypes.bool.isRequired,
 	grid: PropTypes.arrayOf(
 		PropTypes.shape({
 			row: PropTypes.number.isRequired,

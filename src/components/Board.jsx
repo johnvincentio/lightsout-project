@@ -75,7 +75,11 @@ class Board extends React.Component {
 
 	render() {
 		console.log('Board::render(); now ', Date.now(), ' this.state ', this.state, ' this.props ', this.props);
-		const disableButtons = true;
+		let disableButtons = false;
+		let disableGrid = false;
+		if (this.state.complete) disableButtons = true;
+		if (this.state.complete) disableGrid = true;
+
 		return (
 			<div className="board">
 				{/* <div className="board--header">Lights Out</div> */}
@@ -86,7 +90,7 @@ class Board extends React.Component {
 					<Grid
 						grid={this.state.grid}
 						onKeyPressed={this.handleOnKeyPressed}
-						complete={this.state.complete}
+						disableGrid={disableGrid}
 						clicked={this.state.clicked}
 					/>
 					<div className="board--buttons">

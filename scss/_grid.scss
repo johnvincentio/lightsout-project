@@ -41,17 +41,14 @@ $animation-timing-function: linear;
 		outline: none;
 		border: none;
 
-		&:hover {
-			cursor: pointer;
+		&.enableButtons {
+			&:hover {
+				cursor: pointer;
+			}
 		}
 
 		&.on {
 			background-color: $lights-on-color;
-
-			// &:hover {
-			// 	background-color: $lights-on-lighter-color !important;
-			// 	@include transition(all 0.3s);
-			// }
 
 			&.animate {
 				animation: pulsateOff 0.5s $animation-timing-function;
@@ -62,11 +59,6 @@ $animation-timing-function: linear;
 
 		&.off {
 			background-color: $lights-off-color;
-
-			// &:hover {
-			// 	background-color: $lights-off-lighter-color !important;
-			// 	@include transition(all 0.3s);
-			// }
 
 			&.animate {
 				animation: pulsateOn 0.5s $animation-timing-function;
