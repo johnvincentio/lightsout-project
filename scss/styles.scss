@@ -1,5 +1,14 @@
 //
 
+@font-face {
+  font-family: 'Neon';
+  src: local('Neon'), url(../src/assets/fonts/neon.ttf) format('truetype');
+}
+
+// $font-family: 'Roboto', sans-serif;
+$font-family: sans-serif;
+$neon-font-family: 'Neon', sans-serif;
+
 $lights-on-color: yellow;
 $lights-on-lighter-color: #f0f0cf;
 

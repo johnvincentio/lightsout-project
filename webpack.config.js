@@ -23,7 +23,7 @@ require('dotenv').config();
  */
 
 const SCSS_FOLDER = path.resolve(__dirname, './scss');
-const FONTS_FOLDER = path.resolve(__dirname, './scss/fonts');
+const FONTS_FOLDER = path.resolve(__dirname, './src/assets/fonts');
 const DIST_FOLDER = path.resolve(__dirname, './dist');
 
 /*
@@ -132,7 +132,7 @@ const plugins = [
 	// new CleanWebpackPlugin([DIST_FOLDER]),
 
 	// list all React app required env variables
-	new webpack.EnvironmentPlugin(['HOME_URL', 'NODE_ENV', 'GITHUB_TOKEN']),
+	new webpack.EnvironmentPlugin(['HOME_URL', 'NODE_ENV']),
 
 	HTMLPlugin,
 
