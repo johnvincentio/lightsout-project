@@ -13,13 +13,13 @@ class Sign extends React.Component {
 			<div className="sign">
 				{complete ? (
 					<div>
-						<span className="sign--first">Vic</span>
-						<span className="sign--second">Tory</span>
+						<span className="sign--neon">Vic</span>
+						<span className="sign--flux">Tory</span>
 					</div>
 				) : (
 					<div>
-						<span className="sign--first">Lights</span>
-						<span className="sign--second">Out</span>
+						<span className="sign--neon">Lights</span>
+						<span className="sign--flux">Out</span>
 					</div>					
 				)}
 			</div>
