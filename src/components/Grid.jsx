@@ -32,7 +32,7 @@ class Grid extends React.Component {
 									`grid--square`, 
 									column.lightson ? `on` : `off`,
 									animation ? `animate` : ``,
-									disableGrid ? `disableButtons` : `enableButtons`);
+									disableGrid ? `disableButton` : `enableButton`);
 								// console.log('clz ', clz);
 								return (
 									<button 
