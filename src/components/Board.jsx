@@ -9,12 +9,12 @@ import Grid from './Grid';
 
 import { initialize, updateGrid, isComplete } from '../utils';
 
-
 /*
 TODO;
 While SolveIt is active,
 1. must disable both buttons while this is in progress
 2. also remove clicked on square.
+3. do not show Victory.
 When SolveIt is over, enable the buttons, respecting this.state.complete.
 
 On Click Square:
@@ -36,20 +36,16 @@ class Board extends React.Component {
 		console.log('Board::handleOnKeyPressed; now ', Date.now(), ' row ', row, ' column ', column);
 		this.setState({ clicked: { status: true, row, column }});
 		setTimeout(() => {
-			this.executeMove(row,column);
-		}, 500);
-	}
-
-	executeMove = (row, column) => {
-		console.log('Board::executeMove; now ', Date.now(), 'row ', row, ' column ', column);
+			console.log('Board::executeMove; now ', Date.now(), 'row ', row, ' column ', column);
 		
-		this.setState(prevState => {
-			const grid = updateGrid(prevState.grid, row, column);
-			const moves = [ ...prevState.moves, { row, column }]
-			return (
-				{ complete: isComplete(grid) , grid, moves, clicked: { status: false } }
-			)
-		});
+			this.setState(prevState => {
+				const grid = updateGrid(prevState.grid, row, column);
+				const moves = [ ...prevState.moves, { row, column }]
+				return (
+					{ complete: isComplete(grid) , grid, moves, clicked: { status: false } }
+				)
+			});
+		}, 500);
 	}
 
 	handleOnSolveIt = () => {
