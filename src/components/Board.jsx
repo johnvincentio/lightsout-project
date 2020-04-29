@@ -28,7 +28,9 @@ class Board extends React.Component {
 			arr[i] = { row: i, columns };
 		}
 		const moves = [];
-		for (let i = 0; i < props.gridSize ** 2; i++) {
+		// const maxMoves = props.gridSize ** 2;
+		const maxMoves = 2;
+		for (let i = 0; i < maxMoves; i++) {
 			const obj = {
 				row: Math.floor(Math.random() * props.gridSize),
 				column: Math.floor(Math.random() * props.gridSize)
@@ -95,30 +97,19 @@ class Board extends React.Component {
 		console.log('Board::handleOnKeyPressed; id ', id, ' row ', row, ' column ', column);
 		this.setState(prevState => {
 			const grid = this.updateGrid(prevState.grid, row, column);
-
-			// const array = this.copyArray(prevState.grid);
-			// array[row].columns[column].on = ! array[row].columns[column].on;		// toggle the square that was clicked
-
-			// if (this.isInbounds(row - 1, column)) {
-			// 	array[row - 1].columns[column].on = ! array[row - 1].columns[column].on;
-			// }
-
-			// if (this.isInbounds(row, column - 1)) {
-			// 	array[row].columns[column - 1].on = ! array[row].columns[column - 1].on;
-			// }
-
-			// if (this.isInbounds(row, column + 1)) {
-			// 	array[row].columns[column + 1].on = ! array[row].columns[column + 1].on;
-			// }
-
-			// if (this.isInbounds(row + 1, column)) {
-			// 	array[row + 1].columns[column].on = ! array[row + 1].columns[column].on;
-			// }
-
+			const moves = [ ...prevState.moves, { row, column }]
 			return (
-				{ complete: this.isComplete(grid) , grid }
+				{ complete: this.isComplete(grid) , grid, moves }
 			)
 		});
+	}
+
+	handleOnShowme = () => {
+		const reverse = [ ...this.state.moves].reverse();
+
+		reverse.forEach(item => {
+			console.log('moves; item ', item);
+		})
 	}
 
 	render() {
@@ -139,6 +130,9 @@ class Board extends React.Component {
 						<button type="button" className="board--restart-button" onClick={() => this.handleOnNewgame()}>
 							Restart
 						</button>
+						<button type="button" className="board--showme-button" onClick={() => this.handleOnShowme()}>
+							Show Me!
+						</button>
 					</div>
 				</div>
 			</div>
@@ -155,3 +149,26 @@ Board.defaultProps = {
 }
 
 export default Board;
+
+/*
+
+			// const array = this.copyArray(prevState.grid);
+			// array[row].columns[column].on = ! array[row].columns[column].on;		// toggle the square that was clicked
+
+			// if (this.isInbounds(row - 1, column)) {
+			// 	array[row - 1].columns[column].on = ! array[row - 1].columns[column].on;
+			// }
+
+			// if (this.isInbounds(row, column - 1)) {
+			// 	array[row].columns[column - 1].on = ! array[row].columns[column - 1].on;
+			// }
+
+			// if (this.isInbounds(row, column + 1)) {
+			// 	array[row].columns[column + 1].on = ! array[row].columns[column + 1].on;
+			// }
+
+			// if (this.isInbounds(row + 1, column)) {
+			// 	array[row + 1].columns[column].on = ! array[row + 1].columns[column].on;
+			// }
+*/
+
