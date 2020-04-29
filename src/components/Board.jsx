@@ -10,14 +10,16 @@ import Grid from './Grid';
 class Board extends React.Component {
 	constructor(props) {
 		super(props);
+		const { grid, moves } = this.init(props);
 		this.state = {
 			complete: false,
-			grid: this.init(props)
+			grid,
+			moves
 		};
 	}
 
 	init = props => {
-		const arr = new Array(props.gridSize);
+		let arr = new Array(props.gridSize);
 		for (let i = 0; i < arr.length; i++) {
 			const columns = new Array(props.gridSize);
 			for (let j = 0; j < columns.length; j++) {
@@ -25,7 +27,16 @@ class Board extends React.Component {
 			}
 			arr[i] = { row: i, columns };
 		}
-		return arr;
+		const moves = [];
+		for (let i = 0; i < props.gridSize ** 2; i++) {
+			const obj = {
+				row: Math.floor(Math.random() * props.gridSize),
+				column: Math.floor(Math.random() * props.gridSize)
+			}
+			arr = this.updateGrid(arr, obj.row, obj.column);
+			moves.push(obj);
+		}
+		return { grid: arr, moves };
 	}
 
 	copyArray = array => {
@@ -37,13 +48,36 @@ class Board extends React.Component {
 	}
 
 	handleOnNewgame = () => {
-		this.setState({ complete: false, grid: this.init(this.props) });
+		const { grid, moves } = this.init(this.props);
+		this.setState({ complete: false, grid, moves });
 	}
 	
 	isInbounds = (row, column) => {
 		if (row < 0 || row >= this.props.gridSize) return false;
 		if (column < 0 || column >= this.props.gridSize) return false;
 		return true;
+	}
+
+	updateGrid = (grid, row, column) => {
+		const array = this.copyArray(grid);
+		array[row].columns[column].on = ! array[row].columns[column].on;		// toggle the square that was clicked
+
+		if (this.isInbounds(row - 1, column)) {
+			array[row - 1].columns[column].on = ! array[row - 1].columns[column].on;
+		}
+
+		if (this.isInbounds(row, column - 1)) {
+			array[row].columns[column - 1].on = ! array[row].columns[column - 1].on;
+		}
+
+		if (this.isInbounds(row, column + 1)) {
+			array[row].columns[column + 1].on = ! array[row].columns[column + 1].on;
+		}
+
+		if (this.isInbounds(row + 1, column)) {
+			array[row + 1].columns[column].on = ! array[row + 1].columns[column].on;
+		}
+		return array;
 	}
 
 	isComplete = grid => {
@@ -60,27 +94,29 @@ class Board extends React.Component {
 	handleOnKeyPressed = (id, row, column) => {
 		console.log('Board::handleOnKeyPressed; id ', id, ' row ', row, ' column ', column);
 		this.setState(prevState => {
-			const array = this.copyArray(prevState.grid);
-			array[row].columns[column].on = ! array[row].columns[column].on;		// toggle the square that was clicked
+			const grid = this.updateGrid(prevState.grid, row, column);
 
-			if (this.isInbounds(row - 1, column)) {
-				array[row - 1].columns[column].on = ! array[row - 1].columns[column].on;
-			}
+			// const array = this.copyArray(prevState.grid);
+			// array[row].columns[column].on = ! array[row].columns[column].on;		// toggle the square that was clicked
 
-			if (this.isInbounds(row, column - 1)) {
-				array[row].columns[column - 1].on = ! array[row].columns[column - 1].on;
-			}
+			// if (this.isInbounds(row - 1, column)) {
+			// 	array[row - 1].columns[column].on = ! array[row - 1].columns[column].on;
+			// }
 
-			if (this.isInbounds(row, column + 1)) {
-				array[row].columns[column + 1].on = ! array[row].columns[column + 1].on;
-			}
+			// if (this.isInbounds(row, column - 1)) {
+			// 	array[row].columns[column - 1].on = ! array[row].columns[column - 1].on;
+			// }
 
-			if (this.isInbounds(row + 1, column)) {
-				array[row + 1].columns[column].on = ! array[row + 1].columns[column].on;
-			}
+			// if (this.isInbounds(row, column + 1)) {
+			// 	array[row].columns[column + 1].on = ! array[row].columns[column + 1].on;
+			// }
+
+			// if (this.isInbounds(row + 1, column)) {
+			// 	array[row + 1].columns[column].on = ! array[row + 1].columns[column].on;
+			// }
 
 			return (
-				{ complete: this.isComplete(array) , grid: array }
+				{ complete: this.isComplete(grid) , grid }
 			)
 		});
 	}
