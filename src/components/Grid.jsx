@@ -67,7 +67,16 @@ Grid.propTypes = {
 				})
 			)
 		})
-	).isRequired
+	).isRequired,
+	clicked: PropTypes.shape({
+		status: PropTypes.bool.isRequired,
+		row: PropTypes.number,
+		column: PropTypes.number
+	}).isRequired
+}
+
+Grid.defaultProps = {
+
 }
 
 export default Grid;
