@@ -49,24 +49,6 @@ $breakpoint-8: 1100px;
 	}
 }
 
-@media only screen and (min-width: $breakpoint-5) and (max-width: $breakpoint-6) {
-	.grid {
-		&--square { width: 140px; height: 140px; }
-	}
-}
-
-@media only screen and (min-width: $breakpoint-6) and (max-width: $breakpoint-7) {
-	.grid {
-		&--square { width: 160px; height: 160px; }
-	}
-}
-
-@media only screen and (min-width: $breakpoint-7) and (max-width: $breakpoint-8) {
-	.grid {
-		&--square { width: 175px; height: 175px; }
-	}
-}
-
 @media only screen and (max-width: $breakpoint-3) {
 	.board {
 		&--buttons {
