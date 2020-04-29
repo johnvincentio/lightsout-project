@@ -95,13 +95,15 @@ class Board extends React.Component {
 		return (
 			<div className="board">
 				<Sign complete={complete}/>
-				<Grid
-					grid={this.state.grid}
-					onKeyPressed={this.handleOnKeyPressed}
-					disableGrid={disableGrid}
-					clicked={clicked}
-					solveit={solveit}
-				/>
+				{!complete && (
+					<Grid
+						grid={this.state.grid}
+						onKeyPressed={this.handleOnKeyPressed}
+						disableGrid={disableGrid}
+						clicked={clicked}
+						solveit={solveit}
+					/>
+				)}
 				<div className="board--buttons">
 					<button
 						type="button"

@@ -12,7 +12,7 @@ class Sign extends React.Component {
 		return (
 			<div className="sign">
 				{complete ? (
-					<div>
+					<div className="sign--victory">
 						<span className="sign--neon">Vic</span>
 						<span className="sign--flux">Tory</span>
 					</div>

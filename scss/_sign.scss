@@ -32,7 +32,6 @@
 	font-family: $neon-font-family;
 
 	&--neon {
-		// font-family: neon;
 		color: #FB4264;
 		font-size: 9vw;
 		line-height: 9vw;
@@ -44,7 +43,6 @@
 	}
 	
 	&--flux {
-		// font-family: neon;
 		color: #426DFB;
 		font-size: 9vw;
 		line-height: 9vw;
@@ -54,5 +52,10 @@
 		-moz-animation: flux 2s linear infinite;
 		-webkit-animation: flux 2s linear infinite;
 		-o-animation: flux 2s linear infinite;
+	}
+
+	&--victory {
+		margin-top: 60px;
+		margin-bottom: 50px;
 	}
 }
