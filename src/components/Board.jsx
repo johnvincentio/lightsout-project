@@ -5,6 +5,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Sign from './Sign';
 import Grid from './Grid';
 
 import { initialize, updateGrid, isComplete } from '../utils';
@@ -20,9 +21,6 @@ While SolveIt is active,
 2. also remove clicked on square.
 3. do not show Victory.
 When SolveIt is over, enable the buttons, respecting this.state.complete.
-
-On Click Square:
-De-activate all squares and buttons until the square has been updated.
 */
 
 class Board extends React.Component {
@@ -98,9 +96,10 @@ class Board extends React.Component {
 			<div className="board">
 				{/* <div className="board--header">Lights Out</div> */}
 				<div className="board--container">
-					{this.state.complete &&
+					<Sign />
+					{/* {complete &&
 						<div className="board--status">Congratulations on your Victory!!!</div>
-					}
+					} */}
 					<Grid
 						grid={this.state.grid}
 						onKeyPressed={this.handleOnKeyPressed}
