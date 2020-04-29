@@ -1,13 +1,22 @@
 // 
 
-@keyframes pulsate  {
+$animation-timing-function: linear;
+
+@keyframes pulsateOn  {
 	0% {
-		background-color: $pulse-start-color;
-		border: 3px solid $pulse-end-color;
+		background-color: $pulse-on-start-color;
 	}
 	100% {
-		background-color: $pulse-end-color;
-		border: 3px solid $pulse-start-color;
+		background-color: $pulse-on-end-color;
+	}
+}
+
+@keyframes pulsateOff  {
+	0% {
+		background-color: $pulse-off-start-color;
+	}
+	100% {
+		background-color: $pulse-off-end-color;
 	}
 }
 
@@ -29,7 +38,6 @@
 	&--square {
 		width: 130px;
 		height: 120px;
-		// border: 1px solid $lights-off-color;
 		outline: none;
 		border: none;
 
@@ -37,8 +45,9 @@
 			background-color: $lights-on-color;
 
 			&.animate {
-				animation: pulsate 0.75s ease;
-				animation-iteration-count: infinite; 
+				animation: pulsateOff 0.5s $animation-timing-function;
+				animation-iteration-count: infinite;
+				animation-delay: 0;
 			}
 		}
 
@@ -46,8 +55,9 @@
 			background-color: $lights-off-color;
 
 			&.animate {
-				animation: pulsate 0.75s ease;
+				animation: pulsateOn 0.5s $animation-timing-function;
 				animation-iteration-count: infinite; 
+				animation-delay: 0;
 			}
 		}
 	}
