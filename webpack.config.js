@@ -23,11 +23,8 @@ require('dotenv').config();
  */
 
 const SCSS_FOLDER = path.resolve(__dirname, './scss');
-// const FONTS_FOLDER = path.resolve(__dirname, './scss/fonts');
-const ICONS_FOLDER = path.resolve(__dirname, './icons');
+const FONTS_FOLDER = path.resolve(__dirname, './scss/fonts');
 const DIST_FOLDER = path.resolve(__dirname, './dist');
-const INCLUDE_SCSS_FOLDER = path.resolve(__dirname, './src');
-const INCLUDE_CSS_FOLDER = path.resolve(__dirname, './src');
 
 /*
  * Define plugins
@@ -115,13 +112,13 @@ config.module = {
 		},
 		{
 			test: /\.(sass|scss)$/,
+			include: [SCSS_FOLDER],
 			exclude: [/node_modules/],
 			use: ['style-loader', 'css-loader', 'sass-loader']
 		},
 		{
 			test: /\.(png|jpg|jpeg|gif|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-			// include: [FONTS_FOLDER, ICONS_FOLDER],
-			include: [ICONS_FOLDER],
+			include: [FONTS_FOLDER],
 			loader: 'file-loader?name=assets/[name].[ext]'
 		}
 	]
