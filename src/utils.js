@@ -5,7 +5,10 @@
 export function copyGrid(grid) {
 	const arr = new Array(grid.length);
 	for (let i = 0; i < arr.length; i++) {
-		arr[i] = { row: grid[i].row, columns: [ ...grid[i].columns]};
+		arr[i] = {
+			row: grid[i].row,
+			columns: [ ...grid[i].columns]
+		};
 	}
 	return arr;
 }
@@ -59,9 +62,16 @@ export function initialize(gridSize) {
 	for (let i = 0; i < arr.length; i++) {
 		const columns = new Array(gridSize);
 		for (let j = 0; j < columns.length; j++) {
-			columns[j] = { id: i * arr.length + j, column: j, lightson: false };
+			columns[j] = {
+				id: i * arr.length + j,
+				column: j,
+				lightson: false
+			};
 		}
-		arr[i] = { row: i, columns };
+		arr[i] = {
+			row: i, 
+			columns
+		};
 	}
 
 	const moves = [];
@@ -75,5 +85,11 @@ export function initialize(gridSize) {
 		arr = updateGrid(arr, obj.row, obj.column);
 		moves.push(obj);
 	}
-	return { grid: arr, moves, complete: false, clicked: { status: false } };
+	return {
+		grid: arr,
+		moves,
+		complete: false,
+		clicked: { status: false },
+		solveit: false
+	};
 }

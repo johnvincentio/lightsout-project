@@ -40,13 +40,18 @@ class Board extends React.Component {
 		console.log('Board::handleOnKeyPressed; now ', Date.now(), ' row ', row, ' column ', column);
 		this.setState({ clicked: { status: true, row, column }});
 		setTimeout(() => {
-			console.log('Board::executeMove; now ', Date.now(), 'row ', row, ' column ', column);
+			console.log('Board::handleOnKeyPressed::setTimeout; now ', Date.now(), 'row ', row, ' column ', column);
 		
 			this.setState(prevState => {
 				const grid = updateGrid(prevState.grid, row, column);
 				const moves = [ ...prevState.moves, { row, column }]
 				return (
-					{ complete: isComplete(grid) , grid, moves, clicked: { status: false } }
+					{
+						complete: isComplete(grid),
+						grid,
+						moves,
+						clicked: { status: false }
+					}
 				)
 			});
 		}, 500);
@@ -55,32 +60,39 @@ class Board extends React.Component {
 	handleOnSolveIt = () => {
 		console.log('Board::handleOnSolveIt(); this.state ', this.state, ' this.props ', this.props);
 		if (this.state.clicked.status) return;
-
-		const reverse = [ ...this.state.moves].reverse();
-
-		let ptr = 0;
-		this.timer = setInterval(() => {
-			// console.log('in timer; ptr ', ptr);
-			if (ptr < reverse.length) {
-				console.log('in reverse a move; now ', Date.now(), ' ptr ', ptr, ' reverse[ptr] ',reverse[ptr]);
-				this.handleOnKeyPressed(reverse[ptr].row, reverse[ptr].column);
-				ptr++;
-			}
-			else {
-				console.log('clearInterval');
-				clearInterval(this.timer);
-			}
-		}, 2000);
+		this.setState({ solveit: true });
+		setTimeout(() => {
+			console.log('Board::handleOnSolveIt::setTimeout; now ', Date.now(), ' this.state.moves ', this.state.moves);
+			let ptr = 0;
+			const reverse = [ ...this.state.moves].reverse();
+			this.timer = setInterval(() => {
+				// console.log('in timer; ptr ', ptr);
+				if (ptr < reverse.length) {
+					console.log('in reverse a move; now ', Date.now(), ' ptr ', ptr, ' reverse[ptr] ',reverse[ptr]);
+					this.handleOnKeyPressed(reverse[ptr].row, reverse[ptr].column);
+					ptr++;
+				}
+				else {
+					console.log('clearInterval');
+					clearInterval(this.timer);
+				}
+			}, 2000);
+		}, 500);	
 	}
 
 	render() {
 		console.log('Board::render(); now ', Date.now(), ' this.state ', this.state, ' this.props ', this.props);
-		const disableRestartButton = false;
+		let disableRestartButton = false;
+		if (this.state.solveit) disableRestartButton = true;
+
 		let disableSolveitButton = false;
-		if (this.state.complete) disableSolveitButton = true;
+		if (this.state.solveit || this.state.complete) disableSolveitButton = true;
+
+		// solveit
+		// key pressed
 
 		let disableGrid = false;
-		if (this.state.complete) disableGrid = true;
+		if (this.state.solveit || this.state.complete) disableGrid = true;
 
 		return (
 			<div className="board">
@@ -128,3 +140,26 @@ Board.defaultProps = {
 }
 
 export default Board;
+
+/*
+	handleOnSolveIt = () => {
+		console.log('Board::handleOnSolveIt(); this.state ', this.state, ' this.props ', this.props);
+		if (this.state.clicked.status) return;
+
+		const reverse = [ ...this.state.moves].reverse();
+
+		let ptr = 0;
+		this.timer = setInterval(() => {
+			// console.log('in timer; ptr ', ptr);
+			if (ptr < reverse.length) {
+				console.log('in reverse a move; now ', Date.now(), ' ptr ', ptr, ' reverse[ptr] ',reverse[ptr]);
+				this.handleOnKeyPressed(reverse[ptr].row, reverse[ptr].column);
+				ptr++;
+			}
+			else {
+				console.log('clearInterval');
+				clearInterval(this.timer);
+			}
+		}, 2000);
+	}
+*/
