@@ -20,6 +20,7 @@ class Board extends React.Component {
 	}
 	
 	handleOnKeyPressed = (row, column) => {
+		if (this.state.clicked.status) return;
 		console.log('Board::handleOnKeyPressed; row ', row, ' column ', column);
 		this.setState({ clicked: { status: true, row, column }});
 		setTimeout(() => {
@@ -43,10 +44,11 @@ class Board extends React.Component {
 TODO; must disable both buttons while this is in progress, also remove clicked.
 */
 	handleOnShowme = () => {
+		if (this.state.clicked.status) return;
+
 		const reverse = [ ...this.state.moves].reverse();
 
 		let ptr = 0;
-
 		this.timer = setInterval(() => {
 			console.log('in timer; ptr ', ptr);
 			if (ptr < reverse.length) {
