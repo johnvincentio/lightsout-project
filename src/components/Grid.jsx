@@ -27,13 +27,13 @@ class Grid extends React.Component {
 											&& clicked.status
 											&& clicked.row === row.row 
 											&& clicked.column === column.column;
-								console.log('animation ', animation);
+								// console.log('animation ', animation);
 								const clz = classnames(
 									`grid--square`, 
 									column.lightson ? `on` : `off`,
 									animation ? `animate` : ``,
 									disableGrid ? `disableButtons` : `enableButtons`);
-								console.log('clz ', clz);
+								// console.log('clz ', clz);
 								return (
 									<button 
 										type="button"

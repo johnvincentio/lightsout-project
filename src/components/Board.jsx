@@ -31,7 +31,7 @@ class Board extends React.Component {
 		this.state = initialize(props.gridSize);
 	}
 
-	handleOnNewgame = () => {
+	handleOnRestart = () => {
 		this.setState(initialize(this.props.gridSize));
 	}
 	
@@ -75,9 +75,11 @@ class Board extends React.Component {
 
 	render() {
 		console.log('Board::render(); now ', Date.now(), ' this.state ', this.state, ' this.props ', this.props);
-		let disableButtons = false;
+		const disableRestartButton = false;
+		let disableSolveitButton = false;
+		if (this.state.complete) disableSolveitButton = true;
+
 		let disableGrid = false;
-		if (this.state.complete) disableButtons = true;
 		if (this.state.complete) disableGrid = true;
 
 		return (
@@ -96,17 +98,17 @@ class Board extends React.Component {
 					<div className="board--buttons">
 						<button
 							type="button"
-							className={`board--restart-button ${disableButtons ? "disableButtons" : "enabledButtons"}`}
-							onClick={() => this.handleOnNewgame()}
-							disabled={disableButtons}
+							className={`board--restart-button ${disableRestartButton ? "disableButton" : "enabledButton"}`}
+							onClick={() => this.handleOnRestart()}
+							disabled={disableRestartButton}
 						>
 							Restart
 						</button>
 						<button
 							type="button"
-							className={`board--solveit-button ${disableButtons ? "disableButtons" : "enabledButtons"}`}
+							className={`board--solveit-button ${disableSolveitButton ? "disableButton" : "enabledButton"}`}
 							onClick={() => this.handleOnSolveIt()}
-							disabled={disableButtons}
+							disabled={disableSolveitButton}
 						>
 							Solve it!
 						</button>
