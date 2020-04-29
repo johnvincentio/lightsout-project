@@ -10,7 +10,7 @@ import Grid from './Grid';
 class Board extends React.Component {
 	constructor(props) {
 		super(props);
-		const { grid, moves } = this.init(props);
+		const { grid, moves } = this.init(props.gridSize);
 		this.state = {
 			complete: false,
 			grid,
@@ -19,10 +19,10 @@ class Board extends React.Component {
 		};
 	}
 
-	init = props => {
-		let arr = new Array(props.gridSize);
+	init = gridSize => {
+		let arr = new Array(gridSize);
 		for (let i = 0; i < arr.length; i++) {
-			const columns = new Array(props.gridSize);
+			const columns = new Array(gridSize);
 			for (let j = 0; j < columns.length; j++) {
 				columns[j] = { id: i * arr.length + j, column: j, lightson: false };
 			}
@@ -33,8 +33,8 @@ class Board extends React.Component {
 		const maxMoves = 2;
 		for (let i = 0; i < maxMoves; i++) {
 			const obj = {
-				row: Math.floor(Math.random() * props.gridSize),
-				column: Math.floor(Math.random() * props.gridSize)
+				row: Math.floor(Math.random() * gridSize),
+				column: Math.floor(Math.random() * gridSize)
 			}
 			arr = this.updateGrid(arr, obj.row, obj.column);
 			moves.push(obj);
