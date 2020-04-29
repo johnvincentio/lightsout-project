@@ -14,7 +14,8 @@ class Board extends React.Component {
 		this.state = {
 			complete: false,
 			grid,
-			moves
+			moves,
+			clicked: { status: false}
 		};
 	}
 
@@ -51,7 +52,7 @@ class Board extends React.Component {
 
 	handleOnNewgame = () => {
 		const { grid, moves } = this.init(this.props);
-		this.setState({ complete: false, grid, moves });
+		this.setState({ complete: false, grid, moves, clicked: { status: false} });
 	}
 	
 	isInbounds = (row, column) => {
@@ -95,17 +96,26 @@ class Board extends React.Component {
 
 	handleOnKeyPressed = (id, row, column) => {
 		console.log('Board::handleOnKeyPressed; id ', id, ' row ', row, ' column ', column);
+		this.setState({ clicked: { status: true, row, column }});
+		setTimeout(() => {
+			this.executeMove(row,column);
+		}, 1000);
+	}
+
+	executeMove = (row, column) => {
+		console.log('Board::executeMove; row ', row, ' column ', column);
+		
 		this.setState(prevState => {
 			const grid = this.updateGrid(prevState.grid, row, column);
 			const moves = [ ...prevState.moves, { row, column }]
 			return (
-				{ complete: this.isComplete(grid) , grid, moves }
+				{ complete: this.isComplete(grid) , grid, moves, clicked: { status: false } }
 			)
 		});
 	}
 
 	/*
-TODO; must disable both buttons while this is in progresss
+TODO; must disable both buttons while this is in progress, also remove clicked.
 */
 	handleOnShowme = () => {
 		const reverse = [ ...this.state.moves].reverse();
@@ -123,7 +133,7 @@ TODO; must disable both buttons while this is in progresss
 				console.log('clear interval');
 				clearInterval(this.timer);
 			}
-		}, 1000);
+		}, 2000);
 	}
 
 	render() {
@@ -139,6 +149,7 @@ TODO; must disable both buttons while this is in progresss
 						grid={this.state.grid}
 						onKeyPressed={this.handleOnKeyPressed}
 						complete={this.state.complete}
+						clicked={this.state.clicked}
 					/>
 					<div className="board--restart">
 						<button type="button" className="board--restart-button" onClick={() => this.handleOnNewgame()}>

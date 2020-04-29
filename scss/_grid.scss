@@ -22,10 +22,18 @@
 
 		&.on {
 			background-color: $lights-on-color;
+
+			&.animate {
+				border: 3px solid red;
+			}
 		}
 
 		&.off {
 			background-color: $lights-off-color;
+
+			&.animate {
+				border: 3px solid red;
+			}
 		}
 	}
 }
