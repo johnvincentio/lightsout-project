@@ -29,20 +29,20 @@ class Grid extends React.Component {
 									<button 
 										type="button"
 										key={column.id}
-										className={`grid--square ${column.on ? "on" : "off"}`}
+										className={`grid--square ${column.lightson ? "on" : "off"}`}
 										disabled
 									>
-										row={row.row}, column={column.column}, active={column.on}, id={column.id}
+										row={row.row}, column={column.column}, active={column.lightson}, id={column.id}
 									</button>
 								);
 								return (
 									<button 
 										type="button"
 										key={column.id}
-										className={`grid--square ${column.on ? "on" : "off"} ${abc ? "animate" : ""} `}
+										className={`grid--square ${column.lightson ? "on" : "off"} ${abc ? "animate" : ""} `}
 										onClick={() => this.onHandleClick(column.id, row.row, column.column)}
 									>
-										row={row.row}, column={column.column}, active={column.on}, id={column.id}
+										row={row.row}, column={column.column}, active={column.lightson}, id={column.id}
 									</button>
 								)})}
 						</div>
@@ -63,7 +63,7 @@ Grid.propTypes = {
 				PropTypes.shape({
 					id: PropTypes.number.isRequired,
 					column: PropTypes.number.isRequired,
-					on: PropTypes.bool.isRequired
+					lightson: PropTypes.bool.isRequired
 				})
 			)
 		})

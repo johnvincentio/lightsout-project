@@ -24,7 +24,7 @@ class Board extends React.Component {
 		for (let i = 0; i < arr.length; i++) {
 			const columns = new Array(props.gridSize);
 			for (let j = 0; j < columns.length; j++) {
-				columns[j] = {id: i * arr.length + j, column: j, on: true };
+				columns[j] = {id: i * arr.length + j, column: j, lightson: true };
 			}
 			arr[i] = { row: i, columns };
 		}
@@ -63,34 +63,39 @@ class Board extends React.Component {
 
 	updateGrid = (grid, row, column) => {
 		const array = this.copyArray(grid);
-		array[row].columns[column].on = ! array[row].columns[column].on;		// toggle the square that was clicked
+		array[row].columns[column].lightson = ! array[row].columns[column].lightson;		// toggle the square that was clicked
 
 		if (this.isInbounds(row - 1, column)) {
-			array[row - 1].columns[column].on = ! array[row - 1].columns[column].on;
+			array[row - 1].columns[column].lightson = ! array[row - 1].columns[column].lightson;
 		}
 
 		if (this.isInbounds(row, column - 1)) {
-			array[row].columns[column - 1].on = ! array[row].columns[column - 1].on;
+			array[row].columns[column - 1].lightson = ! array[row].columns[column - 1].lightson;
 		}
 
 		if (this.isInbounds(row, column + 1)) {
-			array[row].columns[column + 1].on = ! array[row].columns[column + 1].on;
+			array[row].columns[column + 1].lightson = ! array[row].columns[column + 1].lightson;
 		}
 
 		if (this.isInbounds(row + 1, column)) {
-			array[row + 1].columns[column].on = ! array[row + 1].columns[column].on;
+			array[row + 1].columns[column].lightson = ! array[row + 1].columns[column].lightson;
 		}
 		return array;
 	}
 
 	isComplete = grid => {
+		console.log('>>> isComplete; grid ', grid);
 		for (let i = 0; i < grid.length; i++) {
 			const row = grid[i];
 			for (let j = 0; j < row.columns.length; j++) {
 				const column = row.columns[j];
-				if (column.on) return false; ;
+				if (column.lightson) {
+					console.log('<<< isComplete; false');
+					return false;
+				}
 			}
 		}
+		console.log('<<< isComplete; TRUE');
 		return true;
 	}
 
