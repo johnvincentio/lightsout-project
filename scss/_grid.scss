@@ -2,7 +2,8 @@
 
 .grid {
 
-	@extend %boxshadow2;
+	// @extend %boxshadow4;
+	box-shadow: 0 0 50px #fff, -10px 0 80px #f0f, 10px 0 80px #0ff;
 
 	margin-top: 70px;
 	margin-bottom: 30px;
@@ -16,14 +17,15 @@
 	&--square {
 		width: 130px;
 		height: 120px;
-		border: 1px solid $primary-color;
+		border: 1px solid $lights-off-color;
+		outline: none;
 
 		&.on {
-			background-color: lightgreen;
+			background-color: $lights-on-color;
 		}
 
 		&.off {
-			background-color: brown;
+			background-color: $lights-off-color;
 		}
 	}
 }

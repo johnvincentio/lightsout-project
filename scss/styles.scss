@@ -1,14 +1,21 @@
 //
 
+$lights-on-color: #00bcd4;
+$lights-off-color: #263238;
 
-$primary-color: #428bca;
-$dark-primary-color: #3071a9;
-$darker-primary-color: #093e6c;
+$button-background-color: #912691;
+$darker-button-background-color: #4f164f;
+$button-color: white;
 
-$secondary-color: #f0f0f0;
-$dark-secondary-color: #afafaf;
 
-$header-height: 64px;
+// $primary-color: #428bca;
+// $dark-primary-color: #3071a9;
+// $darker-primary-color: #093e6c;
+
+// $secondary-color: #f0f0f0;
+// $dark-secondary-color: #afafaf;
+
+$background-color: black;
 
 @import 'setup';
 @import 'mixins';

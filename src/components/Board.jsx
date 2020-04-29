@@ -89,7 +89,7 @@ class Board extends React.Component {
 		console.log('Board::render(); this.state ', this.state, ' this.props ', this.props);
 		return (
 			<div className="board">
-				<div className="board--header">Lights Out</div>
+				{/* <div className="board--header">Lights Out</div> */}
 				<div className="board--container">
 					{this.state.complete &&
 						<div className="board--status">Congratulations on your Victory!!!</div>

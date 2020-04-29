@@ -18,38 +18,11 @@
 
 .board {
 
-	&--header {
-		@extend %boxshadow;
-
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		z-index: 10;
-		background-color: $secondary-color;
-		color: $dark-primary-color;
-	
-		font-size: 1.5rem;
-		font-weight: 500;
-		letter-spacing: 0.0075em;
-	
-		display: flex;
-		justify-content: left;
-		align-items: center;
-	
-		height: $header-height;
-		width: 100%;
-	
-		padding-left: 50px;
-	}
-
 	&--container {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-evenly;
 		align-items: center;
-
-		margin-top: $header-height;
 	}
 
 	&--restart {
@@ -63,12 +36,12 @@
 			padding: 16px;
 			margin: 6px auto 20px auto;
 
-			background-color: $primary-color;
-			color: white;
+			background-color: $button-background-color;
+			color: $button-color;
 			text-decoration: none;
 			outline: none;
 			&:hover {
-				background-color: $dark-primary-color;
+				background-color: $darker-button-background-color;
 				@include transition(all 0.3s);
 				cursor: pointer;
 				@include opacity(1);
@@ -81,7 +54,7 @@
 		font-size: 1.4em;
 		margin: 50px auto -10px auto;
 		padding: 20px;
-		color: $primary-color;
-		background-color: white;
+		color: $darker-button-background-color;
+		background-color: $button-color;
 	}
 }
