@@ -1,0 +1,49 @@
+// 
+
+$breakpoint-1: 361px;
+$breakpoint-2: 500px;
+$breakpoint-3: 600px;
+$breakpoint-4: 700px;
+$breakpoint-5: 900px;
+
+@media only screen and (max-width: $breakpoint-1) {
+	.grid {
+		&--square {
+			width: 50px;
+			height: 50px;
+		}
+	}
+	.board {
+		&--buttons {
+			&-restart, &-solveit {
+				font-size: 1em;
+				padding: 10px;
+				margin: 6px 20px 20px 20px;
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: $breakpoint-1) and (max-width: $breakpoint-2) {
+	.grid {
+		&--square { width: 65px; height: 65px; }
+	}
+}
+
+@media only screen and (min-width: $breakpoint-2) and (max-width: $breakpoint-3) {
+	.grid {
+		&--square { width: 80px; height: 80px; }
+	}
+}
+
+@media only screen and (min-width: $breakpoint-3) and (max-width: $breakpoint-4) {
+	.grid {
+		&--square { width: 95px; height: 95px; }
+	}
+}
+
+@media only screen and (min-width: $breakpoint-4) and (max-width: $breakpoint-5) {
+	.grid {
+		&--square { width: 110px; height: 110px; }
+	}
+}
