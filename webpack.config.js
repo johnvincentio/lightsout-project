@@ -8,11 +8,11 @@ const SWPreCacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const copyWebpackPluginOptions = 'warning'; // info, debug, warning
+// const copyWebpackPluginOptions = 'warning'; // info, debug, warning
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -137,12 +137,7 @@ const plugins = [
 	HTMLPlugin,
 
 	extractSCSSBundle, // create css bundle from scss
-	extractCSSBundle, // allow import file.css
-
-	// copy images
-	new CopyWebpackPlugin([{ from: 'src/images', to: 'images' }], {
-		debug: copyWebpackPluginOptions
-	})
+	extractCSSBundle // allow import file.css
 ];
 
 if (PRODUCTION_MODE) {
