@@ -6,17 +6,17 @@ const webpack = require('webpack');
 const WebpackManifestPlugin = require('webpack-manifest-plugin');
 const SWPreCacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// const copyWebpackPluginOptions = 'warning'; // info, debug, warning
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const copyWebpackPluginOptions = 'warning'; // info, debug, warning
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-require('dotenv').config();
+const transforms = require('./transforms');
 
 /*
  * Define folders
@@ -31,7 +31,23 @@ const DIST_FOLDER = path.resolve(__dirname, './dist');
  */
 
 const HTMLPlugin = new HtmlWebpackPlugin({
-	template: './index.html'
+	template: './templates/index.hbs',
+	file: './index.html',
+	hash: false,
+	chunksSortMode: 'none',
+	// inlineSource: 'manifest~.+\\.js',
+	HOME_URL: transforms.HOME_URL,
+	TITLE: transforms.TITLE,
+	DESCRIPTION: transforms.DESCRIPTION,
+	KEYWORDS: transforms.KEYWORDS,
+	AUTHOR: transforms.AUTHOR,
+	AUTHOR_IMAGE: transforms.AUTHOR_IMAGE,
+	TWITTER_USERNAME: transforms.TWITTER_USERNAME,
+	GOOGLE_PROFILE: transforms.GOOGLE_PROFILE,
+	GOOGLE_SITE_VERIFICATION: transforms.GOOGLE_SITE_VERIFICATION,
+	GOOGLE_ANALYTICS_UA: transforms.GOOGLE_ANALYTICS_UA,
+	GOOGLE_ANALYTICS_URL: transforms.GOOGLE_ANALYTICS_URL,
+	FACEBOOK_APP_ID: transforms.FACEBOOK_APP_ID
 });
 
 const extractSCSSBundle = new MiniCssExtractPlugin({
@@ -129,15 +145,18 @@ config.module = {
  */
 
 const plugins = [
-	// new CleanWebpackPlugin([DIST_FOLDER]),
 
-	// list all React app required env variables
 	new webpack.EnvironmentPlugin(['HOME_URL', 'NODE_ENV']),
 
 	HTMLPlugin,
 
 	extractSCSSBundle, // create css bundle from scss
-	extractCSSBundle // allow import file.css
+	extractCSSBundle, // allow import file.css
+
+	// copy static assets
+	new CopyWebpackPlugin([{ from: 'static/favicon_package', to: '.' }], {
+		debug: copyWebpackPluginOptions
+	})
 ];
 
 if (PRODUCTION_MODE) {
