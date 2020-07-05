@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.lightsout.johnvincent.io/sitemap.xml
+Host: https://www.lightsout.johnvincent.io

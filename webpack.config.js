@@ -154,6 +154,16 @@ const plugins = [
 	extractCSSBundle, // allow import file.css
 
 	// copy static assets
+	new CopyWebpackPlugin([{ from: 'static/sitemap.xml', to: '.' }], {
+		debug: copyWebpackPluginOptions
+	}),
+	new CopyWebpackPlugin([{ from: 'static/robots.txt', to: '.' }], {
+		debug: copyWebpackPluginOptions
+	}),
+	new CopyWebpackPlugin([{ from: 'static/google9104b904281bf3a3.html', to: '.' }], {
+		debug: copyWebpackPluginOptions
+	}),
+	
 	new CopyWebpackPlugin([{ from: 'static/favicon_package', to: '.' }], {
 		debug: copyWebpackPluginOptions
 	})

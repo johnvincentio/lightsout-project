@@ -47,6 +47,17 @@
 	<meta name="msapplication-config" content="<%= htmlWebpackPlugin.options.HOME_URL %>/browserconfig.xml">
 	<meta name="theme-color" content="#ffffff">
 
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=<%= htmlWebpackPlugin.options.GOOGLE_ANALYTICS_UA %>"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', '<%= htmlWebpackPlugin.options.GOOGLE_ANALYTICS_UA %>');
+	</script>
+	<!-- End Google Analytics -->
+
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 
