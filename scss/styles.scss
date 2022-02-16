@@ -1,8 +1,8 @@
 //
 
 @font-face {
-  font-family: 'Neon';
-  src: local('Neon'), url(../src/assets/fonts/neon.ttf) format('truetype');
+	font-family: 'Neon';
+	src: local('Neon'), url(../src/fonts/neon.ttf) format('truetype');
 }
 
 // $font-family: 'Roboto', sans-serif;
@@ -31,7 +31,7 @@ $background-color: black;
 @import 'mixins';
 
 %boxshadow {
-	@include box-shadow(1px 1px 6px 1px rgba(0,0,0,0.53));
+	@include box-shadow(1px 1px 6px 1px rgba(0, 0, 0, 0.53));
 }
 
 %borderRadius {
