@@ -65,14 +65,13 @@ const HTMLPlugin = new HtmlWebpackPlugin({
 	FACEBOOK_APP_ID: transforms.FACEBOOK_APP_ID
 });
 
-const extractCSSOptions = PRODUCTION_MODE
-	? {
-			filename: '[name].[contenthash].css',
-			chunkFilename: '[id].[contenthash].css'
-	  }
-	: {
-			filename: '[name].css'
-	  };
+let extractCSSOptions = { filename: '[name].css' };
+if (PRODUCTION_MODE) {
+	extractCSSOptions = {
+		filename: '[name].[contenthash].css',
+		chunkFilename: '[id].[contenthash].css'
+	};
+}
 
 const extractCSSBundle = new MiniCssExtractPlugin(extractCSSOptions);
 
