@@ -3,18 +3,19 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const WebpackManifestPlugin = require('webpack-manifest-plugin');
-const SWPreCacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+
+const { GenerateSW } = require('workbox-webpack-plugin');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const copyWebpackPluginOptions = 'warning'; // info, debug, warning
-
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+require('dotenv').config();
 
 const transforms = require('./transforms');
 
@@ -23,8 +24,22 @@ const transforms = require('./transforms');
  */
 
 const SCSS_FOLDER = path.resolve(__dirname, './scss');
-const FONTS_FOLDER = path.resolve(__dirname, './src/assets/fonts');
+const FONTS_FOLDER = path.resolve(__dirname, './src/fonts');
 const DIST_FOLDER = path.resolve(__dirname, './dist');
+
+/*
+ * Define home url
+ */
+const { HOME_URL } = process.env;
+console.log('HOME_URL ', HOME_URL);
+
+/*
+ * Define production mode
+ */
+
+console.log('webpack; node-env ', process.env.NODE_ENV);
+const PRODUCTION_MODE = process.env.NODE_ENV === 'production';
+console.log('webpack; PRODUCTION_MODE ', PRODUCTION_MODE);
 
 /*
  * Define plugins
@@ -32,7 +47,7 @@ const DIST_FOLDER = path.resolve(__dirname, './dist');
 
 const HTMLPlugin = new HtmlWebpackPlugin({
 	template: './templates/index.hbs',
-	file: './index.html',
+	filename: './index.html',
 	hash: false,
 	chunksSortMode: 'none',
 	// inlineSource: 'manifest~.+\\.js',
@@ -50,28 +65,16 @@ const HTMLPlugin = new HtmlWebpackPlugin({
 	FACEBOOK_APP_ID: transforms.FACEBOOK_APP_ID
 });
 
-const extractSCSSBundle = new MiniCssExtractPlugin({
-	filename: '[name].[contenthash].css',
-	chunkFilename: '[id].[contenthash].css'
-});
+const extractCSSOptions = PRODUCTION_MODE
+	? {
+			filename: '[name].[contenthash].css',
+			chunkFilename: '[id].[contenthash].css'
+	  }
+	: {
+			filename: '[name].css'
+	  };
 
-const extractCSSBundle = new MiniCssExtractPlugin({
-	filename: '[name].css'
-});
-
-/*
- * Define home url
- */
-const { HOME_URL } = process.env;
-console.log('HOME_URL ', HOME_URL);
-
-/*
- * Define production mode
- */
-
-console.log('webpack; node-env ', process.env.NODE_ENV);
-const PRODUCTION_MODE = process.env.NODE_ENV === 'production';
-console.log('webpack; PRODUCTION_MODE ', PRODUCTION_MODE);
+const extractCSSBundle = new MiniCssExtractPlugin(extractCSSOptions);
 
 /*
  * Define entry points
@@ -103,10 +106,10 @@ config.optimization = {
 		name: 'manifest'
 	},
 	minimizer: [
-		new UglifyJsPlugin({
-			sourceMap: true,
-			uglifyOptions: {
-				ecma: 8,
+		new TerserPlugin({
+			// sourceMap: true
+			terserOptions: {
+				// ecma: 8,
 				mangle: false,
 				keep_classnames: true,
 				keep_fnames: true
@@ -130,12 +133,13 @@ config.module = {
 			test: /\.(sass|scss)$/,
 			include: [SCSS_FOLDER],
 			exclude: [/node_modules/],
-			use: ['style-loader', 'css-loader', 'sass-loader']
+			use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
 		},
 		{
 			test: /\.(png|jpg|jpeg|gif|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
 			include: [FONTS_FOLDER],
-			loader: 'file-loader?name=assets/[name].[ext]'
+			exclude: /node_modules/,
+			type: 'asset/resource'
 		}
 	]
 };
@@ -145,27 +149,20 @@ config.module = {
  */
 
 const plugins = [
-
 	new webpack.EnvironmentPlugin(['HOME_URL', 'NODE_ENV']),
 
 	HTMLPlugin,
 
-	extractSCSSBundle, // create css bundle from scss
-	extractCSSBundle, // allow import file.css
+	extractCSSBundle, // allow import scss and css
 
-	// copy static assets
-	new CopyWebpackPlugin([{ from: 'static/sitemap.xml', to: '.' }], {
-		debug: copyWebpackPluginOptions
-	}),
-	new CopyWebpackPlugin([{ from: 'static/robots.txt', to: '.' }], {
-		debug: copyWebpackPluginOptions
-	}),
-	new CopyWebpackPlugin([{ from: 'static/google9104b904281bf3a3.html', to: '.' }], {
-		debug: copyWebpackPluginOptions
-	}),
-	
-	new CopyWebpackPlugin([{ from: 'static/favicon_package', to: '.' }], {
-		debug: copyWebpackPluginOptions
+	new CopyWebpackPlugin({
+		// copy assets
+		patterns: [
+			{ from: 'static/sitemap.xml', to: '.' },
+			{ from: 'static/robots.txt', to: '.' },
+			{ from: 'static/google9104b904281bf3a3.html', to: '.' },
+			{ from: 'static/favicon_package', to: '.' }
+		]
 	})
 ];
 
@@ -175,22 +172,9 @@ if (PRODUCTION_MODE) {
 		new WebpackManifestPlugin({
 			fileName: 'asset-manifest.json' // Not to confuse with manifest.json
 		}),
-		new SWPreCacheWebpackPlugin({
-			// By default, a cache-busting query parameter is appended to requests
-			// used to populate the caches, to ensure the responses are fresh.
-			// If a URL is already hashed by Webpack, then there is no concern
-			// about it being stale, and the cache-busting can be skipped.
-			dontCacheBustUrlsMatching: /\.\w{8}\./,
-			filename: 'service-worker.js',
-			logger(message) {
-				if (message.indexOf('Total precache size is') === 0) {
-					return;
-				}
-				console.log(message);
-			},
-			minify: true, // minify and uglify the script
-			navigateFallback: '/index.html',
-			staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
+		new GenerateSW({
+			clientsClaim: true,
+			skipWaiting: true
 		})
 	];
 }
@@ -222,11 +206,8 @@ if (!PRODUCTION_MODE) {
 	config.devtool = 'inline-source-map';
 
 	config.devServer = {
-		contentBase: DIST_FOLDER,
 		compress: false,
-		// inline: true,
 		port: 9432,
-		clientLogLevel: 'info',
 		historyApiFallback: true,
 		proxy: {
 			'/api/**': {
